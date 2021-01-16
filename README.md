@@ -5,4 +5,4 @@
 ```sh
 $ ls /usr/share/man/man?/*config*
 ```
-![Пример вывода](/epam.devops-hometask-1-2/screenshots/task1_1.png "Подсказка")
+![Пример вывода](/screenshots/task1_1.png "Подсказка")
