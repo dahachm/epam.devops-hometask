@@ -119,3 +119,52 @@ $ cd /home/admin/  # 10
 ![Пример вывода команды](/1-2/screenshots/task5_1.png)
 
 ***
+
+## Task 6
+Создайть одной командой в домашней директории 3 папки new, in-process, processed. При этом in-process должна содержать в себе еще 3 папки tread0, tread1, tread2.
+```sh
+$ mkdir new in-process{,/thread{0..2}} processed
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_1.png)
+
+Далее создать 100 файлов формата data[[:digit:]][[:digit:]] в папке new. 
+```sh
+$ touch ./new/data{0..9}{0..9}
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_2.png)
+
+Скопировать 34 файла в tread0 и по 33 в tread1 и tread2 соответственно. Вывести содержимое каталога in-process одной командой.
+```sh
+$ cp ./new/data{00..33} ./in-process/thread0/
+$ cp ./new/data{34..66} ./in-process/thread1/
+$ cp ./new/data{67..99} ./in-process/thread2/
+
+$ ls ./in-process/thread{0..2}
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_3.png)
+
+После этого переместить все файлы из каталогов tread в processed одной командой. 
+```sh
+$ mv ./in-process/thread{0..2}/data[[:digit:]][[:digit:]] ./processed/
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_4.png)
+
+Вывести содержимое каталога in-process и processed опять же одной командой.
+```sh
+$ ls ./in-process/thread{0..2} ./processed
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_5.png)
+
+Сравнить количество файлов в каталогах new и processed при помощи изученных ранее команд, если они равны удалите файлы из new.
+```sh
+# [ 'str1' = 'str2' ] && < выполнится, если str1 == str2 > || < выполнится, если str1 != str2 > 
+
+$ [ $(ls ./new | wc -l) = $(ls ./processed | wcw -l) ] && rm ./new/data[[:digit:]][[:digit:]] || echo "Numbers of files are not equal." 
+```
+
+![Пример вывода команды](/1-2/screenshots/task6_6.png)
