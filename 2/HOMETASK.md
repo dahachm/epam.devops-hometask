@@ -49,7 +49,7 @@
   $ awk -f scriptfile access.log
   ```
   
-  ![Пример работы скрипта](/3/screenshots/taskAWK_1.png)
+  ![Пример работы скрипта](/2/screenshots/taskAWK_1.png)
 
 
 * Show number of requests per month for ip 193.106.31.130 (for example: Sep 2016 - 100500 reqs, Oct 2016 - 0 reqs, Nov 2016 - 2 reqs...)
@@ -80,7 +80,7 @@
   $ awk -f scriptfile2 access.log
   ```
   
-  ![Пример работы скрипта](/3/screenshots/taskAWK_2.png)
+  ![Пример работы скрипта](/2/screenshots/taskAWK_2.png)
 
 
 * Show total amount of data which server has provided for each unique ip (i.e. 100500 bytes for 1.2.3.4; 9001 bytes for 5.4.3.2 and so on)
@@ -106,6 +106,27 @@
   $ awk -f scriptfile3 access.log
   ```
   
-  ![Пример работы скрипта](/3/screenshots/taskAWK_3.png)
+  ![Пример работы скрипта](/2/screenshots/taskAWK_3.png)
    
-  [Here is OUTPUT file](/3/OUTPUT)
+  [Here is OUTPUT file](/2/AWK_task3_OUTPUT)
+ 
+ 
+ ## SED 
+ 
+  * Change all user agents to "lynx"
+    
+    ```sh
+    $ sed {s/\"[^\"]*\"/\"lynx\"/3} access.log
+    ```
+    
+    ![Пример работы команды](/2/screenshots/taskSED_1.png)
+    [Here is OUTPUT file](/2/SED_task1_OUTPUT)
+  
+  * Masquerade all ip addresses. For example, 1.2.3.4 becomes "ip1", 3.4.5.6 becomse "ip2" and so on. Rewrite file.
+  
+  *
+  
+  
+ 
+  
+  
