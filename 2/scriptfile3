@@ -1,0 +1,13 @@
+{
+	if ($1 != "") {
+		data[$1]=data[$1]+$10;
+	}
+}
+END {
+	for (i in data) {
+		printf "%-10d bytes to %s\n", data[i], i;
+	}
+}
+
+
+
