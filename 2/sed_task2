@@ -1,0 +1,12 @@
+#!/bin/bash
+echo start at $(date +"%T")
+
+N=1
+while read line; 
+do
+echo $line | sed "s/^\([0-9]*\.\)\{3\}[0-9]*/ip$((N))/g";
+N=$((N+1));
+done < $1 > output
+cp output $1 && rm output
+
+echo finish at $(date +"%T")
