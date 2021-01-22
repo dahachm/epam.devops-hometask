@@ -1,0 +1,22 @@
+BEGIN {
+FS="\"";
+}
+
+{
+names[$6]++;
+
+}
+
+END {
+grstNum=0;
+for (i in names)
+{
+if (names[i] > grstNum)
+{
+grstNum=names[i];
+grstName=i;
+}
+} 
+printf "The most frequently used user agent is \"%s\" (%d times).\n\n", grstName, grstNum; 
+}
+
