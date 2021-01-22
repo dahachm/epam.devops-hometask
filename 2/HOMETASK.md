@@ -52,7 +52,7 @@
   ![Пример работы скрипта](/2/screenshots/taskAWK_1.png)
 
 
-* Show number of requests per month for ip 193.106.31.130 (for example: Sep 2016 - 100500 reqs, Oct 2016 - 0 reqs, Nov 2016 - 2 reqs...)
+* Show number of requests per month for ip **193.106.31.130** (for example: Sep 2016 - 100500 reqs, Oct 2016 - 0 reqs, Nov 2016 - 2 reqs...)
 
   [scriptfile2](/2/scriptfile2):
   
