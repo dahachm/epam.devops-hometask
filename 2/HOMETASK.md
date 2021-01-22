@@ -6,7 +6,7 @@
 
 * What is the most frequent browser (user agent) in given access.log?
 
-  Let's make a small scriptfile:
+  [scriptfile](/2/scriptfile):
   ```awk
 
   #Setting delimiter BEFORE processing any line
@@ -131,8 +131,10 @@
   
     So in this case we use extra file *output* to write results of processed lines from *access.log* and to copy its content in *access.log* after. 
   
-    Print time in the begining and in the end here just to show how long does it take to process such big files.  
-  sed_task2:
+    Print time in the begining and in the end here just to show how long does it take to process such big files.
+    
+    [sed_task2](/2/sed_task2):
+  
     ```sh 
     #!/bin/bash
    
@@ -153,7 +155,7 @@
        
     ![Пример работы команды](/2/screenshots/taskSED_2.png)
     
-    [Here is OUTPUT file (new access.log)](/SED_task2_OUTPUT)
+    [Here is OUTPUT file (new access.log)](/2/SED_task2_OUTPUT)
   
   ## Extra task
   
@@ -173,7 +175,9 @@
   
   
   This script makes a formatted list of IP addresses, that made more then 50 requests to the same url within 10 minutes, specifies details of requests (url, date and time range, and number of requests during this time range) and write it to *output_* file. It also shows the list of unique IP addresses from the list that was made.
+  
   [script](/2/script):
+  
   ```sh
   #!/bin/bash
 
@@ -196,6 +200,7 @@
   ```sh
   $ ./script access.log
   ```
+  
   ![Пример работы команды](/2/screenshots/task_EXTRA_2.png)
   
   [Here is Formatted list (*output_*)](/2/task_EXTRA_OUTPUT_2)
