@@ -129,7 +129,7 @@
   
     As we have to proccess file line by line,  we can not use *-i* mode in *sed* command line to substitute each IP address with "ipN". At the same time we can not write to the file while it's beeing read.
   
-    So in this case we use extra file *output* to write results of processed lines from *access.log* and to copy its content in *access.log* after. 
+    So in this case we use extra file *output* to write results of processing lines from *access.log* and to copy its content in *access.log* after. 
   
     Print time in the begining and in the end here just to show how long does it take to process such big files.
     
