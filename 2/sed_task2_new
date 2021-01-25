@@ -1,0 +1,16 @@
+#!/bin/bash
+echo start at $(date +"%T")
+
+cat $1 | awk '{print $1}' | sort | uniq > ip_list
+
+N=1
+
+while read IP; do
+	sed -i "s:$IP:ip$N:g" $1
+	N=$((N+1));
+done < ip_list
+
+
+
+
+echo finish at $(date +"%T")
