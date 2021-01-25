@@ -127,35 +127,40 @@
   
   * Masquerade all ip addresses. For example, 1.2.3.4 becomes "ip1", 3.4.5.6 becomse "ip2" and so on. Rewrite file.
   
-    As we have to proccess file line by line,  we can not use *-i* mode in *sed* command line to substitute each IP address with "ipN". At the same time we can not write to the file while it's beeing read.
-  
-    So in this case we use extra file *output* to write results of processing lines from *access.log* and to copy its content in *access.log* after. 
+    At first, make list of unique IP addresses from *access.log*.
+    
+    Then for each IP from the list substitute it in original file *access.log* with **ipN** (where **N** is IP number in the list *ip_list*) using **sed** with **-i** parameter.
   
     Print time in the begining and in the end here just to show how long does it take to process such big files.
     
-    [sed_task2](/2/sed_task2):
+    [sed_task2](/2/sed_task2_new):
   
     ```sh 
     #!/bin/bash
-   
+    
     echo start at $(date +"%T")
 
+    cat $1 | awk '{print $1}' | sort | uniq > ip_list
+
     N=1
-    while read line; do
-      echo $line | sed "s/^\([0-9]*\.\)\{3\}[0-9]*/ip$((N))/g"
+
+    while read IP; do
+      sed -i "s:$IP:ip$N:g" $1
       N=$((N+1));
-    done < $1 > output
-    cp output access.log && rm output
-    
+    done < ip_list
+
     echo finish at $(date +"%T")
     ```
-    ```sh
-    $ ./sed_task2 access.log 
+    
+    ```
+    $ ./sed_task2 access.log
     ```
        
-    ![Пример работы команды](/2/screenshots/taskSED_2.png)
+    ![Пример работы команды](/2/screenshots/taskSED_2_new.png)
     
-    [Here is OUTPUT file (new access.log)](/2/SED_task2_OUTPUT)
+    [Here is OUTPUT file (new access.log)](/2/SED_task2_OUTPUT_new)
+    
+    [Here is ip_list (list of unique IP from access.log](/2/ip_list)
   
   ## Extra task
   
