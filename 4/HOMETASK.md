@@ -81,14 +81,97 @@
  ***
  
 ## Task 2. systemd
-   -
+
+     
 
 ***
 
-## task 3. cron/Anacron
-   - 
+## task 3. cron/anacron
+   - Create an anacron job which executes a script with *echo Hello > /opt/hello* and runs every 2 days.
+     
+     Make [sciprt file](/4/script) and save it in **/root/** (so its full path is **/root/script**):
+     
+      ```
+      #!/bin/bash
+      echo Hello > /opt/hello
+      ```
+     
+     Add new job in **/etc/anacrontab**:
+     
+      ![Содержимое файла abacrontab](/4/screenshots/task3_1.png)
+     
+     To be able to test if it works as we expect immediately I also set the value of RANDOM_DELAY=0.
+     
+     Run anacron with parameneter **-f** to force execution of all jobs ignoring timestamps.
+     
+      ```
+      # anacron -f
+      ```
+     
+     As the result, we will be able to see that **/opt/hello** file is not empty anymore. To be sure that this task was completed by anacron job we can check **/var/log/cron** file to check its logs:
+     
+      ```
+      # cat /opt/hello
+      #
+      # tail /var/log/cron 
+      ```
+      
+      ![Результат работы команды](/4/screenshots/task3_2.png)
+     
+   - Create a cron job which executes the same command and runs it in 1 minute after system boot.
+     
+     To add new cron job use next command:
+      
+      ```
+      # crontab -e
+      ```
+      
+     And in opened file we add next line:
+     
+      ```
+      @reboot sleep 60 && /root/script
+      ```
+      
+     This means that just after system start it will wait for 60 seconds and than execute **/root/script**.
+     
+     Before rebooting, check that there is no **/opt/hello** file yet and print current time for the record.
+     
+      ![Результат работы команды](/4/screenshots/task3_3.png)
+     
+     After system restart, check **/var/log/cron/** to be sure that cron job has started. And after 1 minute check **/opt/hello** file.
+     
+      ![Результат работы команды](/4/screenshots/task3_4.png)
 
 ***
 
 ## Task 4. lsof
-   - 
+   - Run a **sleep** command, redirect *stdout* and *stderr* into two different files (both of them will be empty).
+      
+      ```
+      # sleep 1000 1> output.log 2> error.log &
+      ```
+      
+      ![Результат работы команды](/4/screenshots/task4_1.png)
+      
+     To find out wich files this process uses will run **lsof** with **-c** parameter:
+     
+      ```
+      # lsof -c sleep
+      ```
+      
+      ![Результат работы команды](/4/screenshots/task4_2.png)
+      
+     In the end of the given list we can see that out process use to files for *writing* (**output.log** and **error.log**) and one for *reading and writing* (**/dev/pts/0**).
+     As this is the only file that is marked as used for reading can assume that *it is where the process gets stdout from*. To check if it's really our terminal (the one in wich the process was started) will try to **echo** smth in **/dev/pts/0**:
+      
+      ![Результат работы команды](/4/screenshots/task4_3.png)
+      
+   - List all ESTABLISHED TCP connections ONLY with lsof.
+   
+     To list all the network files use **lsof** with **-i** parameter and args that specify IP vers (4 or 6), protocol name (TCP or UDP), hostname and hostaddr, service and port. To spesify protocol state **-s P:S** parameter is used with **P** as protocol name (TCP or UDP) and **S** as protocol state (ESTABLISHED in our case).
+     
+      ```
+      # lsof -i TCP -s TCP:ESTABLISHED
+      ```
+      
+      ![Результат работы команды](/4/screenshots/task4_5.png)
