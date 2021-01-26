@@ -162,7 +162,7 @@
       ![Результат работы команды](/4/screenshots/task4_2.png)
       
      In the end of the given list we can see that out process use to files for *writing* (**output.log** and **error.log**) and one for *reading and writing* (**/dev/pts/0**).
-     As this is the only file that is marked as used for reading can assume that *it is where the process gets stdout from*. To check if it's really our terminal (the one in wich the process was started) will try to **echo** smth in **/dev/pts/0**:
+     As this is the only file that is marked as used for reading, can assume that *it is where the process gets stdout from*. To check if it's really our terminal (the one in wich the process was started) will try to **echo** smth in **/dev/pts/0**:
       
       ![Результат работы команды](/4/screenshots/task4_3.png)
       
