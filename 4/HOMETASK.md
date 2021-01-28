@@ -96,7 +96,7 @@
      
      The result of its work:
      
-     [Example output](/4/screenshots/task2_1.png)
+     ![Example output](/4/screenshots/task2_1.png)
      
    - Write another daemon (type=oneshot) that just do 'echo 2 > /tmp/homework' and make it **depenedent on the first daemon** (so it can start only after first one started).
    
@@ -117,9 +117,9 @@
      
      The result of its work:
      
-     [Example output](/4/screenshots/task2_4.png)
+     ![Example output](/4/screenshots/task2_4.png)
      
-     [Example output](/4/screenshots/task2_5.png)
+     ![Example output](/4/screenshots/task2_5.png)
      
      Instead of *Wants* there is can be *Requires* parameter that also makes it check if *first.service* is active and start it if not and ONLY runs itself if *first.service* is active. Another differnece is that if we stop *first.service*, second unit will also be stopped. 
      
@@ -135,9 +135,9 @@
      RemainAfterExit=yes
      ```
      
-     [Example output](/4/screenshots/task2_2.png)
+     ![Example output](/4/screenshots/task2_2.png)
      
-     [Example output](/4/screenshots/task2_3.png)
+     ![Example output](/4/screenshots/task2_3.png)
      
    - Write a timer for the second unit and configure it to run on 01.01.2019 at 00:00
      
@@ -162,7 +162,7 @@
      # cat /tmp/homework
      ```
      
-     [Example output](/4/screenshots/task2_6.png)
+     ![Example output](/4/screenshots/task2_6.png)
      
    - Stop all daemons and timer
      
@@ -172,7 +172,7 @@
      # systectl stop second.timer
      ```
      
-     [Example output](/4/screenshots/task2_7.png)
+     ![Example output](/4/screenshots/task2_7.png)
      
      The system's warning message shows us that when stop a unit it checks if there is an active timer for this unit (but doesn't check if it's goning to trigger someday :'D)
      
