@@ -81,7 +81,100 @@
  ***
  
 ## Task 2. systemd
-
+   - Write a daemon (type=simple) that 'sleep 10' *after a start* and then do 'echo 1 > /tmp/homework'.
+     
+     To do that create **/etc/systemd/system/first.service** with following content:
+     
+     ```
+     [Unit]
+     Decriptiom=First daemon
+     
+     [Service]
+     ExecStart=/bin/bash -c 'sleep 10 && echo 1 > /tmp/homework'
+     RemainAfterExit=yes
+     ```
+     
+     The result of its work:
+     
+     [Example output](/4/screenshots/taks2_1.png)
+     
+   - Write another daemon (type=oneshot) that just do 'echo 2 > /tmp/homework' and make it **depenedent on the first daemon** (so it can start only after first one started).
+   
+     To do that create **etc/systemd/system/first.service** with following content:
+     
+     ```
+     [Unit]
+     Description=Second daemon
+     After=first.service
+     Wants=first.service
+     
+     [Service]
+     Type=oneshot
+     ExecStart=/bin/bash -c 'echo 2 > /tmp/homework'
+     RemainAfterExit=yes
+     ```
+     *Wants* parameter makes this unit check if *first.service* is active and try to start it if it's not and then start itself if succeeded. In that case, when first.service is stopped, second.service will still be active.
+     
+     The result of its work:
+     
+     [Example output](/4/screenshots/task2_4.png)
+     
+     [Example output](/4/screenshots/taks2_5.png)
+     
+     Instead of *Wants* there is can be *Requires* parameter that also makes it check if *first.service* is active and start it if not and ONLY runs itself if *first.service* is active. Another differnece is that if we stop *first.service*, second unit will also be stopped. 
+     
+     ```
+     [Unit]
+     Description=Second daemon
+     After=first.service
+     Requires=first.service
+     
+     [Service]
+     Type=oneshot
+     ExecStart=/bin/bash -c 'echo 2 > /tmp/homework'
+     RemainAfterExit=yes
+     ```
+     
+     [Example output](/4/screenshots/taks2_2.png)
+     
+     [Example output](/4/screenshots/taks2_3.png)
+     
+   - Write a timer for the second unit and configure it to run on 01.01.2019 at 00:00
+     
+     To do that create **etc/systemd/system/second.timer** with following content:
+     
+     ```
+     [Unit]
+     Description=Timer for Second daemon
+     
+     [Timer]
+     OnCalendar=2021-02-01 00:00:00
+     ```
+     
+   - Start all daemons and timer, check their statuses, timer list and /tmp/homework
+     
+     ```
+     # systemctl start first
+     # systemctl start second
+     # systemctl start second.timer
+     #
+     # systemctl list-timers
+     # cat /tmp/homework
+     ```
+     
+     [Example output](/4/screenshots/taks2_6.png)
+     
+   - Stop all daemons and timer
+     
+     ```
+     # systemctl stop first
+     # systemctl stop second
+     # systectl stop second.timer
+     ```
+     
+     [Example output](/4/screenshots/taks2_7.png)
+     
+     The system's warning message shows us that when stop a unit it checks if there is an active timer for this unit (but doesn't check if it's goning to trigger someday :'D)
      
 
 ***
