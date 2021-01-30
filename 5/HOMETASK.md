@@ -9,13 +9,12 @@
     
     ```
     $ ssh Darya_Chemyakina@40.68.74.188
-    $Password:
     ```
     
     To log out: 
     
     ```
-    $exit
+    $ exit
     ```
     
     ![Example output](/5/screenshots/task1_1.png)
@@ -65,7 +64,7 @@
     ```
     
     ```
-    $ chmod 700 ~/.ssh && chmod 644 ~/.ssh/authorized_keys/authorized_keys
+    $ chmod 700 ~/.ssh && chmod 644 ~/.ssh/authorized_keys
     ```
     
     ![Example output](/5/screenshots/task1_4.png)
@@ -76,7 +75,7 @@
     To log in again without password we need to use **-i** parameter that points to demanded Private Key:
     
     ```
-    $ ssh -i "~/.ssh/hw-5" Darya_Chemyakina@40.68.74.188
+    $ ssh -i ~/.ssh/hw-5 Darya_Chemyakina@40.68.74.188
     $
     $ exit
     ```
@@ -101,6 +100,10 @@
     $ chmod 600 ~/.ssh/config
     ```
     
+    ```
+    $ ssh remotehost
+    ```
+    
     ![Example output](/5/screenshots/task1_6.png)
     
     Output of command *cat ~/.ssh/config*:
@@ -112,12 +115,7 @@
     
     ```
     $ ssh remotehost
-    $ telnet 10.0.0.5 80
-    ...
-    > HEAD / HTTP/1.1
-    > HOST: 10.0.0.5
-    > [enter]
-
+    $ curl http://10.0.0.5:80
     ```
 
     ![Example output](/5/screenshots/task1_8.png)
@@ -127,6 +125,8 @@
 ### 1.8
 
 ### 1.9
+
+***
 
 ## Task 2
 
