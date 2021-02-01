@@ -1,6 +1,7 @@
 # Hometask 5
 
   **remotehost** - 40.68.74.188 (public IP)
+  
   **webserver** - 10.0.0.5 (private IP)
 
 
@@ -132,15 +133,14 @@
     ```
     
     And to list listening ports on localhost:
-    
-    on **localhost**:
+
     ```
     $ ss -lnt
     ```
     
-    -l - show only listening sockets
-    -n - show port numbers not names of services
-    -t - show TCP sockets
+      - -l - show only listening sockets
+      - -n - show port numbers not names of services
+      - -t - show TCP sockets
     
     ![Example output](/5/screenshots/task1_9.png)
     
@@ -159,6 +159,23 @@
 
 ### 1.9
   - Open **webserver** webpage in browser of your Host machine of VirtualBox (Windows, or Mac, or whatever else you use). You may need to setup port forwarding in settings of VirtualBox.
+    
+    on Host machine (Windows):
+    ```
+    ssh -L 65000:localhost:62000 admin@192.168.56.2
+    ```
+    
+    Result of opening webpage in browser on Host machine:
+    
+    ![Example output](/5/screenshots/task1_11.png)
+    
+    If we look at the answer from **webserver** we got usin *curl* a bit closely, we can see that there is script that checks through locales (local variables) and return *webserverAddr/**lang-locale**/index.html*.
+    
+    ![Example output](/5/screenshots/task1_12.png)
+    
+    So if we try to reach "10.0.0.5:80/ru-RU/endex.html" using curl from **remotehost**, **webserver** will send thr same webpage:
+    
+    ![Example output](/5/screenshots/task1_13.png)
 
 ***
 
@@ -219,7 +236,7 @@
     
     ![Example output](/5/screenshots/task2_5.png)
     
-    Let's test newly if it works:
+    Let's test newly added loging rules using **logger**:
     
     ```
     # logger -p authpriv.alert "This is alert message"
