@@ -116,7 +116,7 @@
     ![Example output](/5/screenshots/task1_7.png)
     
 ### 1.6
-  - Using command line utility (curl or telnet) verify that there are some webserver running on port 80 of **webserver**.  Notice that webserver has a private network IP, so you can access it only from the same network (when you are on **remotehost** that runs in the same private network). Log out from **remotehost**.
+  - Using command line utility (curl or telnet) verify that there are some webserver running on port 80 of **webserver**.  Notice that webserver has a private network IP, so you can access it only from the same network (when you are on **remotehost** that runs in the same private network).
     
     ```
     $ ssh remotehost
@@ -126,7 +126,7 @@
     ![Example output](/5/screenshots/task1_8.png)
   
 ### 1.7
-  - Using SSH setup port forwarding, so that you can reach **webserver** from your **localhost** (choose any free local port you like).
+  - Using SSH setup port forwarding, so that you can reach **webserver** from your **localhost**.
   
     ```
     $ ssh -L 62000:10.0.0.5:80 remotehost
