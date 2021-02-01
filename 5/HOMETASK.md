@@ -1,5 +1,9 @@
 # Hometask 5
 
+  **remotehost** - 40.68.74.188 (public IP)
+  **webserver** - 10.0.0.5 (private IP)
+
+
 ## Task 1
 
 ### 1.1
@@ -121,10 +125,40 @@
     ![Example output](/5/screenshots/task1_8.png)
   
 ### 1.7
+  - Using SSH setup port forwarding, so that you can reach **webserver** from your **localhost** (choose any free local port you like).
+  
+    ```
+    $ ssh -L 62000:10.0.0.5:80 remotehost
+    ```
+    
+    And to list listening ports on localhost:
+    
+    on **localhost**:
+    ```
+    $ ss -lnt
+    ```
+    
+    -l - show only listening sockets
+    -n - show port numbers not names of services
+    -t - show TCP sockets
+    
+    ![Example output](/5/screenshots/task1_9.png)
+    
 
 ### 1.8
+  - Like in ***1.6***, but on localhost using command line utility verify that **localhost** and port you have specified act like **webserver**, returning same result as in ***1.6***.
+    
+    on **localhost**:
+    ```
+    $ curl localhost:62000
+    ```
+    
+    Got the same answer as in **1.6**:
+    
+    ![Example output](/5/screenshots/task1_10.png)
 
 ### 1.9
+  - Open **webserver** webpage in browser of your Host machine of VirtualBox (Windows, or Mac, or whatever else you use). You may need to setup port forwarding in settings of VirtualBox.
 
 ***
 
