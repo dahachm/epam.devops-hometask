@@ -1,0 +1,201 @@
+52363
++ sum=0
+++ ps -eo pid
++ for pid in '$(ps -eo pid)'
++ sum=0
++ for pid in '$(ps -eo pid)'
++ sum=1
++ for pid in '$(ps -eo pid)'
++ sum=3
++ for pid in '$(ps -eo pid)'
++ sum=7
++ for pid in '$(ps -eo pid)'
++ sum=12
++ for pid in '$(ps -eo pid)'
++ sum=18
++ for pid in '$(ps -eo pid)'
++ sum=25
++ for pid in '$(ps -eo pid)'
++ sum=33
++ for pid in '$(ps -eo pid)'
++ sum=42
++ for pid in '$(ps -eo pid)'
++ sum=52
++ for pid in '$(ps -eo pid)'
++ sum=63
++ for pid in '$(ps -eo pid)'
++ sum=76
++ for pid in '$(ps -eo pid)'
++ sum=90
++ for pid in '$(ps -eo pid)'
++ sum=105
++ for pid in '$(ps -eo pid)'
++ sum=121
++ for pid in '$(ps -eo pid)'
++ sum=138
++ for pid in '$(ps -eo pid)'
++ sum=156
++ for pid in '$(ps -eo pid)'
++ sum=175
++ for pid in '$(ps -eo pid)'
++ sum=195
++ for pid in '$(ps -eo pid)'
++ sum=216
++ for pid in '$(ps -eo pid)'
++ sum=238
++ for pid in '$(ps -eo pid)'
++ sum=261
++ for pid in '$(ps -eo pid)'
++ sum=285
++ for pid in '$(ps -eo pid)'
++ sum=315
++ for pid in '$(ps -eo pid)'
++ sum=346
++ for pid in '$(ps -eo pid)'
++ sum=378
++ for pid in '$(ps -eo pid)'
++ sum=411
++ for pid in '$(ps -eo pid)'
++ sum=452
++ for pid in '$(ps -eo pid)'
++ sum=495
++ for pid in '$(ps -eo pid)'
++ sum=539
++ for pid in '$(ps -eo pid)'
++ sum=584
++ for pid in '$(ps -eo pid)'
++ sum=630
++ for pid in '$(ps -eo pid)'
++ sum=690
++ for pid in '$(ps -eo pid)'
++ sum=785
++ for pid in '$(ps -eo pid)'
++ sum=1062
++ for pid in '$(ps -eo pid)'
++ sum=1343
++ for pid in '$(ps -eo pid)'
++ sum=1625
++ for pid in '$(ps -eo pid)'
++ sum=1908
++ for pid in '$(ps -eo pid)'
++ sum=2192
++ for pid in '$(ps -eo pid)'
++ sum=2477
++ for pid in '$(ps -eo pid)'
++ sum=2764
++ for pid in '$(ps -eo pid)'
++ sum=3052
++ for pid in '$(ps -eo pid)'
++ sum=3341
++ for pid in '$(ps -eo pid)'
++ sum=3632
++ for pid in '$(ps -eo pid)'
++ sum=3998
++ for pid in '$(ps -eo pid)'
++ sum=4365
++ for pid in '$(ps -eo pid)'
++ sum=4742
++ for pid in '$(ps -eo pid)'
++ sum=5120
++ for pid in '$(ps -eo pid)'
++ sum=5510
++ for pid in '$(ps -eo pid)'
++ sum=5901
++ for pid in '$(ps -eo pid)'
++ sum=6293
++ for pid in '$(ps -eo pid)'
++ sum=6686
++ for pid in '$(ps -eo pid)'
++ sum=7080
++ for pid in '$(ps -eo pid)'
++ sum=7475
++ for pid in '$(ps -eo pid)'
++ sum=7871
++ for pid in '$(ps -eo pid)'
++ sum=8268
++ for pid in '$(ps -eo pid)'
++ sum=8666
++ for pid in '$(ps -eo pid)'
++ sum=9065
++ for pid in '$(ps -eo pid)'
++ sum=9465
++ for pid in '$(ps -eo pid)'
++ sum=9866
++ for pid in '$(ps -eo pid)'
++ sum=10345
++ for pid in '$(ps -eo pid)'
++ sum=10841
++ for pid in '$(ps -eo pid)'
++ sum=11350
++ for pid in '$(ps -eo pid)'
++ sum=11878
++ for pid in '$(ps -eo pid)'
++ sum=12456
++ for pid in '$(ps -eo pid)'
++ sum=13037
++ for pid in '$(ps -eo pid)'
++ sum=13620
++ for pid in '$(ps -eo pid)'
++ sum=14205
++ for pid in '$(ps -eo pid)'
++ sum=14792
++ for pid in '$(ps -eo pid)'
++ sum=15381
++ for pid in '$(ps -eo pid)'
++ sum=15973
++ for pid in '$(ps -eo pid)'
++ sum=16569
++ for pid in '$(ps -eo pid)'
++ sum=17196
++ for pid in '$(ps -eo pid)'
++ sum=17846
++ for pid in '$(ps -eo pid)'
++ sum=18498
++ for pid in '$(ps -eo pid)'
++ sum=19156
++ for pid in '$(ps -eo pid)'
++ sum=19819
++ for pid in '$(ps -eo pid)'
++ sum=20493
++ for pid in '$(ps -eo pid)'
++ sum=21169
++ for pid in '$(ps -eo pid)'
++ sum=21860
++ for pid in '$(ps -eo pid)'
++ sum=22610
++ for pid in '$(ps -eo pid)'
++ sum=23499
++ for pid in '$(ps -eo pid)'
++ sum=24664
++ for pid in '$(ps -eo pid)'
++ sum=25831
++ for pid in '$(ps -eo pid)'
++ sum=26999
++ for pid in '$(ps -eo pid)'
++ sum=28493
++ for pid in '$(ps -eo pid)'
++ sum=29991
++ for pid in '$(ps -eo pid)'
++ sum=31737
++ for pid in '$(ps -eo pid)'
++ sum=33612
++ for pid in '$(ps -eo pid)'
++ sum=35643
++ for pid in '$(ps -eo pid)'
++ sum=37683
++ for pid in '$(ps -eo pid)'
++ sum=39727
++ for pid in '$(ps -eo pid)'
++ sum=41772
++ for pid in '$(ps -eo pid)'
++ sum=43841
++ for pid in '$(ps -eo pid)'
++ sum=45970
++ for pid in '$(ps -eo pid)'
++ sum=48105
++ for pid in '$(ps -eo pid)'
++ sum=50241
++ for pid in '$(ps -eo pid)'
++ sum=52378
++ echo 52378
+52378
