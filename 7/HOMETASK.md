@@ -113,7 +113,7 @@
     do export SUM=$(($SUM + $(wc -l $f | awk '{ print $1 }'))); done; echo $SUM
     ```
     
-    As this script doesn't seem to have any child processes, I would exclude *'export'* and would write it like this:
+    As this script doesn't seem to have any child processes, I would exclude *'export'*, and would write it like this:
     
     ```sh
     #!/bin/bash
@@ -138,7 +138,9 @@
   `<filename> <user> <time>` 
   
   and color it red if file was not just accessed but also modified.
-
+  ___
+  
+  
 
 ____
 
@@ -187,10 +189,7 @@ ____
     ```
     ___
     
-    ```
-    $
     
-    ```
     
 
 
@@ -200,3 +199,4 @@ ____
 
 
 ### Task 3
+  - Write a RegEx that will validate URI: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier 
