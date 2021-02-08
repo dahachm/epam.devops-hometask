@@ -140,15 +140,63 @@
   and color it red if file was not just accessed but also modified.
 
 
-
+____
 
 ## RegExp
 
 
 ### Task 1
+  - Stacktraces of JVM languages looks the following way:
+    
+    ```
+      Caused by: org.apache.thrift.transport.TTransportException
+      at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)
+      at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+      at org.apache.thrift.transport.TSaslTransport.receiveSaslMessage(TSaslTransport.java:178)
+      at org.apache.thrift.transport.TSaslTransport.open(TSaslTransport.java:305)
+      at org.apache.thrift.transport.TSaslClientTransport.open(TSaslClientTransport.java:37)
+      at com.cloudera.hivecommon.api.HiveServer2ClientFactory.createTransport(Unknown Source)
+      at com.cloudera.hivecommon.api.HiveServer2ClientFactory.createClient(Unknown Source)
+      at com.cloudera.hivecommon.core.HiveJDBCCommonConnection.establishConnection(Unknown Source)
+      at com.cloudera.impala.core.ImpalaJDBCConnection.establishConnection(Unknown Source)
+      at com.cloudera.jdbc.core.LoginTimeoutConnection.connect(Unknown Source)
+      at com.cloudera.jdbc.common.BaseConnectionFactory.doConnect(Unknown Source)
+      at com.cloudera.jdbc.common.AbstractDriver.connect(Unknown Source)
+      at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:55)
+      at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:355)
+      at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:115)
+      at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:665)
+      at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:544)
+      at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:753)
+      at org.apache.commons.dbutils.AbstractQueryRunner.prepareConnection(AbstractQueryRunner.java:319)
+      at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:345)
+      at com.blah.nbs.validation.util.client.sql.AbstractSqlClient.lambda$executeQuery$0(AbstractSqlClient.java:55)
+      at com.machinezoo.noexception.CheckedExceptionHandler$CheckedFunction.apply(CheckedExceptionHandler.java:723)
+      at com.blah.nbs.validation.util.client.sql.AbstractSqlClient.lambda$executeSql$2(AbstractSqlClient.java:71)
+      at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+      at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+      at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+      at java.lang.Thread.run(Thread.java:748)
+    ```
+    
+    Write a sed one-liner that will show stack traces lines in the following fashion:
+    
+    ```
+    You have a problem with entity org.apache.hadoop.fs.FileSystem$Cache.getInternal! 
+    You can find more info about it in file FileSystem.java at line 2703. This file is written on java.
+    ```
+    ___
+    
+    ```
+    $
+    
+    ```
+    
+
 
 
 ### Task 2
+  - Write a RegEx that validates entries under */etc/passwd*.
 
 
 ### Task 3
