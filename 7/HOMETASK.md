@@ -196,7 +196,50 @@ ____
 
 ### Task 2
   - Write a RegEx that validates entries under */etc/passwd*.
-
+    
+    ```
+    ^[A-Za-z_][A-Za-z0-9_$-]{1,31}:x:\d+:\d+:[^:]*:(\/[^:\/]*)+:(\/[^:\/]*)+$
+    ```
+    
+    Sample output of /etc/passwd:
+    
+    ```
+    sync:x:5:0:sync:/sbin:/bin/sync
+    shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+    halt:x:7:0:halt:/sbin:/sbin/halt
+    systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+    dbus:x:81:81:System message bus:/:/sbin/nologin
+    admin:x:1000:1000:admin:/home/admin:/bin/bash
+    ```
+    
+    * **Username**: ^[A-Za-z_][A-Za-z0-9_$-]{1,31} 
+      
+      As username can only start with *alphabetic character* or '\_' and have no more chars than 32 in lenght.
+    
+    * **Password**: x
+      
+      Historicaly password is replaced by *'x'*. The password itself is stored in */etc/shadow* (encrypted).
+    
+    * **UID**: \d+
+      
+      User ID number.
+      
+    * **GUID**: \d+
+    
+      Group ID number.
+      
+    * **User info (comment)**: [^:]*
+      
+      Contain extra info about User.
+      
+    * **Home directory**: (\/[^:\/]*)+
+    
+      Absolutel path of user's home directory.
+      
+    * **Command/shell**: (\/[^:\/]*)+$
+      
+      Absolute path of a command or shell (e.g. */bin/sync* or other).     
+    
 
 ### Task 3
   - Write a RegEx that will validate URI: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier 
