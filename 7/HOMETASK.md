@@ -236,7 +236,9 @@ ____
     ___
     
     
-    
+    ```
+    sed ' s/\(at \)\([^(]*\)\((\)\([^.]*\)\(\.\)\([^:]*\)\(:\)\([0-9]*\)\()\)/You have a problem with entity \2! You can find more info about it in file \4 at line \8. This file is written on \6./'
+    ```
 
 
 
