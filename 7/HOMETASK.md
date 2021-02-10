@@ -237,8 +237,14 @@ ____
     
     
     ```
-    sed ' s/\(at \)\([^(]*\)\((\)\([^.]*\)\(\.\)\([^:]*\)\(:\)\([0-9]*\)\()\)/You have a problem with entity \2! You can find more info about it in file \4 at line \8. This file is written on \6./'
+    sed -r 's/(at )(.*)(\()(Unknown Source)(\))/You have a problem with entity \2! \4/; t; s/(at )(.*)(\()(.*)(\.)(.*)(:)(.*)(\))/You have a problem with entity \2! You can find more info about it in file \4.\6 at line \8. This file is written on \6./'
     ```
+    
+    *-r* is used for extended regular expressions in the script.
+    
+    ![Example output](/7/screenshots/REtask1_1.png)
+    
+    [Example output(REoutput_1.txt)](/7/REoutput_1.txt) 
 
 
 
@@ -246,7 +252,7 @@ ____
   - Write a RegEx that validates entries under */etc/passwd*.
     
     ```
-    ^[A-Za-z_][A-Za-z0-9_$-]{1,31}:x:\d+:\d+:[^:]*:(\/[^:\/]*)+:(\/[^:\/]*)+$
+    ^([A-Za-z_][A-Za-z0-9_$-]{1,31}):(x):(\d+):(\d+):([^:]*):((\/[^:\/]*)+):((\/[^:\/]*)+)$
     ```
     
     Sample output of /etc/passwd:
@@ -286,7 +292,9 @@ ____
       
     * **Command/shell**: (\/[^:\/]*)+$
       
-      Absolute path of a command or shell (e.g. */bin/sync* or other).     
+      Absolute path of a command or shell (e.g. */bin/sync* or other).
+      
+    ![Example output](/7/screenshots/REtask2_1.png)  
     
 
 ### Task 3
