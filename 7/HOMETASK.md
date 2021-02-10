@@ -135,12 +135,58 @@
   As a first step, you should study a Shell Variables section of man bash, enable an unlimited history size and time stamping of command execution.
   As a second step*, provide a script that will get list of files as arguments, it should find a user who have last accessed each file and print a line in the following fashion:
   
-  `<filename> <user> <time>` 
+    `<filename> <user> <time>` 
   
-  and color it red if file was not just accessed but also modified.
+   and color it red if file was not just accessed but also modified.
   ___
-  
-  
+   
+   Following Shell Variables are configure bash history and time stamping of commands in it:
+   
+   ![Example output](/7/screenshots/task5_1.png)
+   
+   To enable unlimited history size (for all users) let's add this lines to */etc/bashrc*
+   
+   ```
+   # vi /etc/bashrc
+   ```
+   
+   ```
+   export HISTSIZE=
+   export HISTFILESIZE=
+   export PROMPT_COMMAND="${PROMT_COMMAND:+${PROMT_COMMAND} ;} history -a"
+   ```
+   
+   ```
+   # source ~/.bashrc
+   ```
+   
+   Setting *HISTSIZE, HISTFILESIZE* to non-value allows unlimited history. 
+   Adding command 'history -a' makes bash save each commnad printed in command line  in *~/.bash_history* (or other file that is pointed by $HISTFILE).
+   
+   So in my configuration I used to have this limit set to 1000.
+   
+   ![Example output](/7/screenshots/task5_2.png)
+   
+   After editing */etc/bashrc* file bash history updates after each command:
+   
+   ![Example output](/7/screenshots/task5_3.png)
+   
+   
+   To provide time stamping of command execution add following line to */еtс/bashrc*
+   
+   ```
+   export HISTTIMEFORMAT="%D %T "
+   ```
+   
+   ```
+   # source ~/.bashrc
+   ```
+   
+   %D - is for full date format - YYYY-MM-DD
+   %T - is for time format - HH:MM:SS
+   
+   ![Example output](/7/screenshots/task5_4.png)
+   
 
 ____
 
