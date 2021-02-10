@@ -1,0 +1,28 @@
+Caused by: org.apache.thrift.transport.TTransportException
+You have a problem with entity org.apache.thrift.transport.TIOStreamTransport.read! You can find more info about it in file TIOStreamTransport.java at line 132. This file is written on java.
+You have a problem with entity org.apache.thrift.transport.TTransport.readAll! You can find more info about it in file TTransport.java at line 86. This file is written on java.
+You have a problem with entity org.apache.thrift.transport.TSaslTransport.receiveSaslMessage! You can find more info about it in file TSaslTransport.java at line 178. This file is written on java.
+You have a problem with entity org.apache.thrift.transport.TSaslTransport.open! You can find more info about it in file TSaslTransport.java at line 305. This file is written on java.
+You have a problem with entity org.apache.thrift.transport.TSaslClientTransport.open! You can find more info about it in file TSaslClientTransport.java at line 37. This file is written on java.
+You have a problem with entity com.cloudera.hivecommon.api.HiveServer2ClientFactory.createTransport! Unknown Source
+You have a problem with entity com.cloudera.hivecommon.api.HiveServer2ClientFactory.createClient! Unknown Source
+You have a problem with entity com.cloudera.hivecommon.core.HiveJDBCCommonConnection.establishConnection! Unknown Source
+You have a problem with entity com.cloudera.impala.core.ImpalaJDBCConnection.establishConnection! Unknown Source
+You have a problem with entity com.cloudera.jdbc.core.LoginTimeoutConnection.connect! Unknown Source
+You have a problem with entity com.cloudera.jdbc.common.BaseConnectionFactory.doConnect! Unknown Source
+You have a problem with entity com.cloudera.jdbc.common.AbstractDriver.connect! Unknown Source
+You have a problem with entity org.apache.commons.dbcp2.DriverConnectionFactory.createConnection! You can find more info about it in file DriverConnectionFactory.java at line 55. This file is written on java.
+You have a problem with entity org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject! You can find more info about it in file PoolableConnectionFactory.java at line 355. This file is written on java.
+You have a problem with entity org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory! You can find more info about it in file BasicDataSource.java at line 115. This file is written on java.
+You have a problem with entity org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory! You can find more info about it in file BasicDataSource.java at line 665. This file is written on java.
+You have a problem with entity org.apache.commons.dbcp2.BasicDataSource.createDataSource! You can find more info about it in file BasicDataSource.java at line 544. This file is written on java.
+You have a problem with entity org.apache.commons.dbcp2.BasicDataSource.getConnection! You can find more info about it in file BasicDataSource.java at line 753. This file is written on java.
+You have a problem with entity org.apache.commons.dbutils.AbstractQueryRunner.prepareConnection! You can find more info about it in file AbstractQueryRunner.java at line 319. This file is written on java.
+You have a problem with entity org.apache.commons.dbutils.QueryRunner.query! You can find more info about it in file QueryRunner.java at line 345. This file is written on java.
+You have a problem with entity com.blah.nbs.validation.util.client.sql.AbstractSqlClient.lambda$executeQuery$0! You can find more info about it in file AbstractSqlClient.java at line 55. This file is written on java.
+You have a problem with entity com.machinezoo.noexception.CheckedExceptionHandler$CheckedFunction.apply! You can find more info about it in file CheckedExceptionHandler.java at line 723. This file is written on java.
+You have a problem with entity com.blah.nbs.validation.util.client.sql.AbstractSqlClient.lambda$executeSql$2! You can find more info about it in file AbstractSqlClient.java at line 71. This file is written on java.
+You have a problem with entity java.util.concurrent.FutureTask.run! You can find more info about it in file FutureTask.java at line 266. This file is written on java.
+You have a problem with entity java.util.concurrent.ThreadPoolExecutor.runWorker! You can find more info about it in file ThreadPoolExecutor.java at line 1149. This file is written on java.
+You have a problem with entity java.util.concurrent.ThreadPoolExecutor$Worker.run! You can find more info about it in file ThreadPoolExecutor.java at line 624. This file is written on java.
+You have a problem with entity java.lang.Thread.run! You can find more info about it in file Thread.java at line 748. This file is written on java.
