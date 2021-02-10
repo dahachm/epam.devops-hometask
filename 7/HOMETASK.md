@@ -133,13 +133,8 @@
 ### Task 5
   - `stat` command shows when a particular file was accessed. Unfortunately, it can't show who it was.
   As a first step, you should study a Shell Variables section of man bash, enable an unlimited history size and time stamping of command execution.
-  As a second step*, provide a script that will get list of files as arguments, it should find a user who have last accessed each file and print a line in the following fashion:
   
-    `<filename> <user> <time>` 
   
-   and color it red if file was not just accessed but also modified.
-  ___
-   
    Following Shell Variables are configure bash history and time stamping of commands in it:
    
    ![Example output](/7/screenshots/task5_1.png)
@@ -295,7 +290,4 @@ ____
       Absolute path of a command or shell (e.g. */bin/sync* or other).
       
     ![Example output](/7/screenshots/REtask2_1.png)  
-    
 
-### Task 3
-  - Write a RegEx that will validate URI: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier 
