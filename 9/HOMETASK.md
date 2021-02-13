@@ -5,13 +5,19 @@
 
   #### Mitigate OutOfMemory errors by adding some swap space.
 
-  **/dev/sdc** - 5GB disk, that just attached to the VM
+  **/dev/sdb** - 5GB disk, that just attached to the VM
+  
+  ![.png](/9/screenshots/task1_9.png)
 
 ***
 
-### 1.1. Create a 2GB   !!! GPT !!!   partition on /dev/sdc of type "Linux filesystem" (means all the following partitions created in the following steps on /dev/sdc will be GPT as well)
+### 1.1. Create a 2GB GPT partition on /dev/sdb of type "Linux filesystem" (means all the following partitions created in the following steps on /dev/sdb will be GPT as well)
+  
+  ```
+  # 
+  ```
 
-### 1.2. Create a 512MB partition on /dev/sdc of type "Linux swap"
+### 1.2. Create a 512MB partition on /dev/sdb of type "Linux swap"
 
 ### 1.3. Format the 2GB partition with an XFS file system
 
