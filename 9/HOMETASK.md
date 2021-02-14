@@ -14,7 +14,25 @@
 ### 1.1. Create a 2GB GPT partition on /dev/sdb of type "Linux filesystem" (means all the following partitions created in the following steps on /dev/sdb will be GPT as well)
   
   ```
-  # 
+  # gdisk /dev/sdb
+  ```
+  
+  ```
+  GPT fdisk (gdisk) version 0.8.10
+
+  Partition table scan:
+    MBR: not present
+    BSD: not present
+    APM: not present
+    GPT: not present
+
+  Creating new GPT entries.
+
+  Command (? for help):
+  ```
+  
+  ```
+  
   ```
 
 ### 1.2. Create a 512MB partition on /dev/sdb of type "Linux swap"
