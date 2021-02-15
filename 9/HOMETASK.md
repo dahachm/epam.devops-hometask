@@ -312,7 +312,7 @@
   # vgdisplay
   ```
   
-  ![Sample output](/9/screenshots/task2_6.png
+  ![Sample output](/9/screenshots/task2_6.png)
   
 ### 2.4. Extend your root logical volume (LV) by 1GB, leaving other 1GB unassigned
   
@@ -320,13 +320,13 @@
   # lvdisplay
   ```
   
-  ![Sample output](/9/screenshots/task2_7.png
+  ![Sample output](/9/screenshots/task2_7.png)
   
   ```
   # lvextend -L +1G /dev/centos/root /dev/sdb3
   ```
   
-  ![Sample output](/9/screenshots/task2_8.png
+  ![Sample output](/9/screenshots/task2_8.png)
   
   The result:
   
@@ -334,13 +334,13 @@
   # lvdisplay
   ```
   
-  ![Sample output](/9/screenshots/task2_9.png
+  ![Sample output](/9/screenshots/task2_9.png)
   
   ```
   # pvdisplay
   ```
   
-  ![Sample output](/9/screenshots/task2_10.png
+  ![Sample output](/9/screenshots/task2_10.png)
   
 ### 2.5. Check current disk space usage of your root device
   
@@ -348,7 +348,7 @@
   # df -h
   ```
   
-  ![Sample output](/9/screenshots/task2_11.png
+  ![Sample output](/9/screenshots/task2_11.png)
   
 ### 2.6. Extend your root device filesystem to be able to use additional free space of root LV
   
@@ -356,13 +356,13 @@
   # xfs_growfs /dev/mapper/centos-root
   ```
   
-  ![Sample output](/9/screenshots/task2_12.png
+  ![Sample output](/9/screenshots/task2_12.png)
   
   The result:
   
-  ![Sample output](/9/screenshots/task2_13.png
+  ![Sample output](/9/screenshots/task2_13.png)
   
   
 ### 2.7. Verify that after reboot your root device is still 1GB bigger than at 2.5.
   
-  ![Sample output](/9/screenshots/task2_14.png
+  ![Sample output](/9/screenshots/task2_14.png)
