@@ -1,7 +1,7 @@
 # Hometask 9
 
 ## Task 1
-  #### To simulate appearance of new physical disk in server, please create new disk in Virtual Box (5 GB) and attach it to your virtual machine. Add some swap space.
+  #### Create new disk in Virtual Box (5 GB) and attach it to virtual machine. Add some swap space.
   
   
   Creation of new disk in VB:
