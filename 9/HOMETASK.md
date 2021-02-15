@@ -176,7 +176,7 @@
   Add following line to */etc/fstab*:
   
   ```
-  /dev/sdb2       /boot                         swap     defaults        0 0
+  /dev/sdb2       swap                         swap     defaults        0 0
   ```
   
   Enable all the 'swap' devices (that are not available yet) from */etc/fstab*:
