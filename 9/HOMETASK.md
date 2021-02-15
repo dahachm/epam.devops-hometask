@@ -214,10 +214,155 @@
 
 ***
 
-### 2.1. Create 2GB partition on /dev/sdc of type "Linux LVM"
+### 2.1. Create 2GB partition on /dev/sdb of type "Linux LVM"
+  
+  ```
+  # gdisk /dev/sdb
+  ```
+  
+  ```
+  GPT fdisk (gdisk) version 0.8.10
+
+  Partition table scan:
+    MBR: protective
+    BSD: not present
+    APM: not present
+    GPT: present
+
+  Found valid GPT with protective MBR; using GPT.
+
+  Command (? for help): n
+  Partition number (3-128, default 3): 3
+  First sector (34-10485726, default = 5244928) or {+-}size{KMGTP}:
+  Last sector (5244928-10485726, default = 10485726) or {+-}size{KMGTP}: +2G
+  Current type is 'Linux filesystem'
+  Hex code or GUID (L to show codes, Enter = 8300): 8e00
+  Changed type of partition to 'Linux LVM'
+  ```
+  
+  ![Sample output](/9/screenshots/task1_19.png)
+  
+  In the same *gdisk*- session:
+  
+  ```
+  Command (? for help): v
+
+  No problems found. 1048509 free sectors (512.0 MiB) available in 2
+  segments, the largest of which is 1046495 (511.0 MiB) in size.
+
+  Command (? for help): w
+
+  Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+  PARTITIONS!!
+
+  Do you want to proceed? (Y/N): Y
+  OK; writing new GUID partition table (GPT) to /dev/sdb.
+  Warning: The kernel is still using the old partition table.
+  The new table will be used at the next reboot.
+  The operation has completed successfully.
+  ```
+  
+  The result:
+  
+  ```
+  # parted -l
+  ```
+  
+  ![Sample output](/9/screenshots/task2_1.png)
+  
+  
 ### 2.2. Initialize the partition as a physical volume (PV)
+  
+  Each time i tried to create new PV on /dev/sdb3, I got error message "Device /dev/sdb3 not found.".
+  
+  So I googled this issue a bit and decided to try **partprobe** - command that is used to inform the OS of partition table changes.
+  
+  ```
+  # partprobe
+  # pvcreate /dev/sdb3
+  ```
+  
+  ![Sample output](/9/screenshots/task2_2.png)
+  
+  ![Sample output](/9/screenshots/task2_3.png)
+  
 ### 2.3. Extend the volume group (VG) of your root device using your newly created PV
+  
+  Let's check what volume groups I have in my system:
+  
+  ```
+  # vgdisplay
+  ```
+  
+  ![Sample output](/9/screenshots/task2_4.png)
+  
+  So there is only one volume group named **centos**. 
+  
+  To extend it with */dev/sdb3*:
+  
+  ```
+  # vgextend centos /dev/sdb3
+  ```
+  
+  ![Sample output](/9/screenshots/task2_5.png)
+  
+  The result:
+  
+  ```
+  # vgdisplay
+  ```
+  
+  ![Sample output](/9/screenshots/task2_6.png
+  
 ### 2.4. Extend your root logical volume (LV) by 1GB, leaving other 1GB unassigned
+  
+  ```
+  # lvdisplay
+  ```
+  
+  ![Sample output](/9/screenshots/task2_7.png
+  
+  ```
+  # lvextend -L +1G /dev/centos/root /dev/sdb3
+  ```
+  
+  ![Sample output](/9/screenshots/task2_8.png
+  
+  The result:
+  
+  ```
+  # lvdisplay
+  ```
+  
+  ![Sample output](/9/screenshots/task2_9.png
+  
+  ```
+  # pvdisplay
+  ```
+  
+  ![Sample output](/9/screenshots/task2_10.png
+  
 ### 2.5. Check current disk space usage of your root device
+  
+  ```
+  # df -h
+  ```
+  
+  ![Sample output](/9/screenshots/task2_11.png
+  
 ### 2.6. Extend your root device filesystem to be able to use additional free space of root LV
+  
+  ```
+  # xfs_growfs /dev/mapper/centos-root
+  ```
+  
+  ![Sample output](/9/screenshots/task2_12.png
+  
+  The result:
+  
+  ![Sample output](/9/screenshots/task2_13.png
+  
+  
 ### 2.7. Verify that after reboot your root device is still 1GB bigger than at 2.5.
+  
+  ![Sample output](/9/screenshots/task2_14.png
