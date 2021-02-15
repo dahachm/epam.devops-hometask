@@ -273,7 +273,7 @@
   
 ### 2.2. Initialize the partition as a physical volume (PV)
   
-  Each time i tried to create new PV on /dev/sdb3, I got error message "Device /dev/sdb3 not found.".
+  Each time I tried to create new PV on /dev/sdb3, I got error message "Device /dev/sdb3 not found.".
   
   So I googled this issue a bit and decided to try **partprobe** - command that is used to inform the OS of partition table changes.
   
