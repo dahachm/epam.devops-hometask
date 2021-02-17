@@ -67,8 +67,14 @@
   
   ![Результат выполнения команд](/10/screenshots/task2_4.png)
   
-  ![Лист настроек обеих зон](/10/screenshots/task2_5.png)
+  Remove ssh service for other interfaces:
   
+  ```
+  # firewall-cmd --zone=public --remove-services=ssh
+  ```
+  
+  ![Лист настроек обеих зон](/10/screenshots/task2_5.png)
+    
   As we set static IP for **enp0s8** earlier (HT1), there is no need to enable dhcp-client service for it (at least, there is no need in it just in this case).
   
   Add rule to enable ssh only from 192.168.56.0/24 network:
@@ -100,4 +106,41 @@
   ![](/10/screenshots/task2_8.png)
   
 ## 2.	Shutdown firewalld and add the same rules via iptables.
-
+  
+  Stop firewalld and check its state:
+  
+  ```
+  # systemctl stop firewalld
+  # firewall-cmd --state
+  ```
+  
+  ![](/10/screenshots/task2_9.png)
+  
+  I have 2 ip addresse on **enp0s8** (added the second using **nmcli**, like in HT6): 192.168.56.2 and 10.0.0.1:
+  
+  ![](/10/screenshots/task2_10.png)
+  
+  And my host machine IP is 192.168.56.1.
+  
+  Add rule to enable ssh only from 192.168.56.0/24 network and through **enp0s8**:
+  
+  ```
+  # iptables -A INPUT -p tcp --dport ssh -s 192.168.56.0/24 -i enp0s8 -j ACCEPT
+  # iptables -A INPUT -p tcp --dport ssh -j DROP
+  ```
+  
+  List all rules for INPUT:
+  
+  ```
+  # iptables -L INPUT
+  ```
+  
+  ![](/10/screenshots/task2_11.png)
+  
+  Attempt to login via ssh to 10.0.0.1 (from the same VM OS):
+  
+  ![](/10/screenshots/task2_12.png)
+  
+  Attempt to login via ssh to 192.168.56.2 from 192.168.56.1 (host OS):
+  
+  ![](/10/screenshots/task2_13.png)
