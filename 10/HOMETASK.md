@@ -4,9 +4,9 @@
 
 ## 1. Find a utility to inspect *initrd* file contents. Find all files that are related to XFS filesystem and give a short description for every file.
   
-  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and maybe some other drivers that can be needed for correct/customized system start, but can't be embedded to kernel (due to some reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for specific system features. 
+  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and some other drivers/kernel modules, that are needed for correct/customized system start, but can't be embedded to kernel (due to some reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for specific system features. 
   
-  **initramfs** is located in **/boot** directory:
+  **initramfs** files are located in **/boot** directory:
   
   ![1](/10/screenshots/task1_1.png)
   
@@ -45,27 +45,26 @@
   -rwxr-xr-x   1 root     root       576720 Feb  7 09:11 usr/sbin/xfs_repair
   ```
   
-  **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs** - XFS kernel module
+  - **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs** - XFS kernel module
   
-  **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs/xfs.ko.xz** - compressed XFS kernel module
+  - **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs/xfs.ko.xz** - compressed XFS kernel module
   
-  **usr/sbin/fsck.xfs** - is used to check and optionally repair XFS filesystem
+  - **usr/sbin/fsck.xfs** - is used to check and optionally repair XFS filesystem
   
-  **usr/sbin/xfs_db** - is used to examine an XFS filesystem
+  - **usr/sbin/xfs_db** - is used to examine an XFS filesystem
   
-  **usr/sbin/xfs_metadump** - is a debugging tool that copies the metadata from an XFS filesystem to a file.
+  - **usr/sbin/xfs_metadump** - is a debugging tool that copies the metadata from an XFS filesystem to a file.
   
-  **usr/sbin/xfs_repair** - repairs corrupt or damaged XFS filesystems
+  - **usr/sbin/xfs_repair** - repairs corrupt or damaged XFS filesystems
   
 
 ## 2. Explain the difference between ordinary and rescue initrd images.
   
   When some kernel modules or initramfs files are corrupted or missing, the system can't boot correctly.
   
-  For that case there is a **rescue initrd** image that containt all the drivers and kernel modules (usually for the previous stable kernel version) so the system can be
-  booted using this image and admin can check what happened to the needed initial ram disk.
+  For that case there is a **rescue initrd** image that contain all the drivers and kernel modules (usually for the previous stable kernel version). The system can boot using this image, and Admin has access to system files and is able to check what is the problem.
   
-  So the rescue version of initramfs(initrd) is usually much bigger and generared automatically each time kernel is updated.
+  So the **rescue** version of initramfs(initrd) is usually *much bigger* and is generared automatically each time kernel is updated.
   
   ![5](/10/screenshots/task1_5.png)
   
@@ -126,7 +125,7 @@
   
   When booting the system now grub2 menu looks like this:
   
-  ![11](/10/screenshots/task1_11.png)
+  ![11](/10/screenshots/task1_10.png)
   
   If your system fails to boot for whatever reason, it may be useful to boot it into recovery mode. This mode just loads some basic services and drops you into command line mode. You are then logged in as root (the superuser) and can repair your system using command line tools. 
   
@@ -204,7 +203,7 @@
   
   2) This option is useful if to disable SElinux permanently is needed. 
      
-     We can edit kernel comman line in grub configuration file:
+     We can edit kernel command line in grub configuration file:
      
      ```
      # vi /etc/default/grub
@@ -274,7 +273,7 @@
   Remove ssh service for other interfaces:
   
   ```
-  # firewall-cmd --zone=public --remove-services=ssh
+  # firewall-cmd --zone=public --remove-service=ssh
   ```
   
   ![5 Лист настроек обеих зон](/10/screenshots/task2_5.png)
@@ -284,7 +283,7 @@
   Add rule to enable ssh only from 192.168.56.0/24 network:
   
   ```
-  # firewall-cmd --zone=test --add-rich-rule='rule family="ipv4" source address="192.168.56.0/24" service name="ssh"'
+  # firewall-cmd --zone=test --add-rich-rule='rule family="ipv4" source address="192.168.56.0/24" service name="ssh" accept'
   ```
   
   ![6 Отображение правила в списке настроек зоны](/10/screenshots/task2_6.png)
@@ -296,7 +295,7 @@
   Remove the rule and try to log in from host machine again:
   
   ```
-  # firewall-cmd --remove-rich-rule='rule family="ipv4" source address="192.168.56.0/24" service name="ssh"'
+  # firewall-cmd --remove-rich-rule='rule family="ipv4" source address="192.168.56.0/24" service name="ssh" accept'
   ```
   
   or just
@@ -308,6 +307,7 @@
   because parameter *-permanent* wasn't used while setting this rule, it will be erased after service restart.
   
   ![8](/10/screenshots/task2_8.png)
+  
   
 ## 2.	Shutdown firewalld and add the same rules via iptables.
   
