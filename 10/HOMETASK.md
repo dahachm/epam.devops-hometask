@@ -8,17 +8,17 @@
   
   **initramfs** is located in **/boot** directory:
   
-  ![](/10/screenshots/task1_1.png)
+  ![1](/10/screenshots/task1_1.png)
   
   There are few **initramfs** files for different kernel versions, as you can see.
   
   For now **3.10.0-1160.15.2.el7.x86_64** version is used:
   
-  ![](/10/screenshots/task1_2.png)
+  ![2](/10/screenshots/task1_2.png)
   
   So let's inspect suited **initramfs**.
   
-  ![](/10/screenshots/task1_3.png)
+  ![3](/10/screenshots/task1_3.png)
   
   To inspect its content there is **lsinitrd** utility:
   
@@ -26,7 +26,7 @@
   # lsinird /boot/initramfs-3.10.0-1160.15.2.el7.x86_64.img
   ```
   
-  ![](/10/screenshots/task1_4.png)
+  ![4](/10/screenshots/task1_4.png)
   
   All the files related to XFS filesystem can be found with folllowing command:
   
@@ -67,11 +67,11 @@
   
   So the rescue version of initramfs(initrd) is usually much bigger and generared automatically each time kernel is updated.
   
-  ![](/10/screenshots/task1_5.png)
+  ![5](/10/screenshots/task1_5.png)
   
   Grub2 menu to choose OS kernel to boot:
   
-  ![](/10/screenshots/task1_6.png)
+  ![6](/10/screenshots/task1_6.png)
   
 ## 3. Study dracut utility that is used for rebuilding initrd image. Give an example for adding driver/kernel module for your initrd and recreating it.
   
@@ -87,7 +87,7 @@
   # dracut --list-modules
   ```
   
-  ![](/10/screenshots/task1_13.png)
+  ![13](/10/screenshots/task1_13.png)
   
   There is no module **crypt** in **initramfs-3.10.0-1160.15.2.el7.x86_64.img** so let's try to add it by using dracut:
   
@@ -95,9 +95,9 @@
   # 
   ```
   
-  ![Результат](/10/screenshots/task1_14.png)
+  ![14 Результат](/10/screenshots/task1_14.png)
   
-  ![](/10/screenshots/task1_15.png)
+  ![15](/10/screenshots/task1_15.png)
     
 
 ## 4.	Enable recovery options for grub, update main configuration file and find new item in GRUB2 config in /boot.
@@ -111,22 +111,22 @@
   GRUB_DISABLE_RECOVERY="false"
   ```
   
-  ![](/10/screenshots/task1_7.png)
+  ![7](/10/screenshots/task1_7.png)
   
   Then update grub configuration:
   ```
   # grub2-mkconfig -o /boot/grub2/grub.cfg
   ```
   
-  ![](/10/screenshots/task1_9.png)
+  ![9](/10/screenshots/task1_9.png)
   
   In **/boot/grub2/grub.cfg** file new *menuentry* options were found:
   
-  ![](/10/screenshots/task1_12.png)
+  ![12](/10/screenshots/task1_12.png)
   
   When booting the system now grub2 menu looks like this:
   
-  ![](/10/screenshots/task1_11.png)
+  ![11](/10/screenshots/task1_11.png)
   
   If your system fails to boot for whatever reason, it may be useful to boot it into recovery mode. This mode just loads some basic services and drops you into command line mode. You are then logged in as root (the superuser) and can repair your system using command line tools. 
   
@@ -156,7 +156,7 @@
   
   The result:
   
-  ![](/10/screenshots/task1_17.png)
+  ![17](/10/screenshots/task1_17.png)
   
   **b. Set vm.dirty_ratio using *systcl configuration file*** back to *30*:
   
@@ -178,7 +178,7 @@
   
   The result:
   
-  ![](/10/screenshots/task1_18.png)  
+  ![18](/10/screenshots/task1_18.png)  
 
 ## 6.	Disable selinux using kernel cmdline
   
@@ -186,11 +186,11 @@
   
   1) While starting the system in grub2 menu choose needed kernel and press **-e** to *edit*:
     
-     ![](/10/screenshots/task1_19.png)
+     ![19](/10/screenshots/task1_19.png)
      
      Add *selinux=0* to the end of kernel command line just like on the screen below:
      
-     ![](/10/screenshots/task1_20.png)
+     ![20](/10/screenshots/task1_20.png)
      
      And then precc *Ctrl+x* to start system booting.
      
@@ -200,7 +200,7 @@
      # sestatus
      ```
      
-     ![](/10/screenshots/task1_21.png) 
+     ![21](/10/screenshots/task1_21.png) 
   
   2) This option is useful if to disable SElinux permanently is needed. 
      
@@ -212,7 +212,7 @@
      
      Find and edit value of GRUB_CMDLINE_LINUX:
      
-     ![](/10/screenshots/task1_22.png)
+     ![22](/10/screenshots/task1_22.png)
      
      Then update grub configuration:
      
@@ -224,11 +224,11 @@
      
      In grub2 menu can check the state of kernel command line:
      
-     ![](/10/screenshots/task1_23.png)
+     ![23](/10/screenshots/task1_23.png)
      
      Start the system and check SElinux status:
      
-     ![](/10/screenshots/task1_24.png)  
+     ![24](/10/screenshots/task1_24.png)  
 
 ***
 
@@ -242,7 +242,7 @@
   # firewall-cmd --get-zone-of-interface=enp0s8
   ```
   
-  ![](/10/screenshots/task2_1.png)
+  ![1](/10/screenshots/task2_1.png)
   
   *public* also contains other interfaces - enp0s3,enp0s9:
   
@@ -250,7 +250,7 @@
   # firewall-cmd --zone=public --list-all
   ```
   
-  ![](/10/screenshots/task2_2.png)
+  ![2](/10/screenshots/task2_2.png)
   
   So I want to create new zone for managing traffic trough **enp0s8**.
   
@@ -260,7 +260,7 @@
   # firewall-cmd --permanent --new-zone=test
   ```
   
-  ![](/10/screenshots/task2_3.png)
+  ![3](/10/screenshots/task2_3.png)
   
   Remove **enp0s8** from *public* zone and add it to newly created *test* zone:
   
@@ -269,7 +269,7 @@
   # firewall-cmd --zone=test --add-interface=enp0s8
   ```
   
-  ![Результат выполнения команд](/10/screenshots/task2_4.png)
+  ![4 Результат выполнения команд](/10/screenshots/task2_4.png)
   
   Remove ssh service for other interfaces:
   
@@ -277,7 +277,7 @@
   # firewall-cmd --zone=public --remove-services=ssh
   ```
   
-  ![Лист настроек обеих зон](/10/screenshots/task2_5.png)
+  ![5 Лист настроек обеих зон](/10/screenshots/task2_5.png)
     
   As we set static IP for **enp0s8** earlier (HT1), there is no need to enable dhcp-client service for it (at least, there is no need in it just in this case).
   
@@ -287,11 +287,11 @@
   # firewall-cmd --zone=test --add-rich-rule='rule family="ipv4" source address="192.168.56.0/24" service name="ssh"'
   ```
   
-  ![Отображение правила в списке настроек зоны](/10/screenshots/task2_6.png)
+  ![6 Отображение правила в списке настроек зоны](/10/screenshots/task2_6.png)
   
   Try to get access trough ssh from host machine (IP - 192.168.56.1):
   
-  ![](/10/screenshots/task2_7.png)
+  ![7](/10/screenshots/task2_7.png)
   
   Remove the rule and try to log in from host machine again:
   
@@ -307,7 +307,7 @@
   
   because parameter *-permanent* wasn't used while setting this rule, it will be erased after service restart.
   
-  ![](/10/screenshots/task2_8.png)
+  ![8](/10/screenshots/task2_8.png)
   
 ## 2.	Shutdown firewalld and add the same rules via iptables.
   
@@ -318,11 +318,11 @@
   # firewall-cmd --state
   ```
   
-  ![](/10/screenshots/task2_9.png)
+  ![9](/10/screenshots/task2_9.png)
   
   I have 2 ip addresse on **enp0s8** (added the second using **nmcli**, like in HT6): 192.168.56.2 and 10.0.0.1:
   
-  ![](/10/screenshots/task2_10.png)
+  ![10](/10/screenshots/task2_10.png)
   
   And my host machine IP is 192.168.56.1.
   
@@ -339,12 +339,12 @@
   # iptables -L INPUT
   ```
   
-  ![](/10/screenshots/task2_11.png)
+  ![11](/10/screenshots/task2_11.png)
   
   Attempt to login via ssh to 10.0.0.1 (from the same VM OS):
   
-  ![](/10/screenshots/task2_12.png)
+  ![12](/10/screenshots/task2_12.png)
   
   Attempt to login via ssh to 192.168.56.2 from 192.168.56.1 (host OS):
   
-  ![](/10/screenshots/task2_13.png)
+  ![13](/10/screenshots/task2_13.png)
