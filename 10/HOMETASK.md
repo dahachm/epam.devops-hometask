@@ -4,7 +4,7 @@
 
 ## 1. Find a utility to inspect *initrd* file contents. Find all files that are related to XFS filesystem and give a short description for every file.
   
-  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and some other drivers/kernel modules, that are needed for correct/customized system start, but can't be embedded to kernel (due to some reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for specific system features. 
+  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules, needed for kernel to mount root filesystem and some other drivers/kernel modules, that are needed for correct/customized system start, but can't be embedded to kernel (due to some reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for specific system features. 
   
   **initramfs** files are located in **/boot** directory:
   
@@ -12,7 +12,7 @@
   
   There are few **initramfs** files for different kernel versions, as you can see.
   
-  For now **3.10.0-1160.15.2.el7.x86_64** version is used:
+  Currently **3.10.0-1160.15.2.el7.x86_64** kernel version is used:
   
   ![2](/10/screenshots/task1_2.png)
   
@@ -112,7 +112,7 @@
   
   ![Результат](/10/screenshots/task1_dracut.png)
   
-  Used *--add-drivers*parameter because *ip_set* is one of kernel modules, not dracut modules.
+  Used *--add-drivers*parameter because *ip_set* is one of loaded kernel modules, not dracut modules.
 
 ## 4.	Enable recovery options for grub, update main configuration file and find new item in GRUB2 config in /boot.
   
@@ -142,17 +142,15 @@
   
   ![11](/10/screenshots/task1_10.png)
   
-  If your system fails to boot for whatever reason, it may be useful to boot it into recovery mode. This mode just loads some basic services and drops you into command line mode. You are then logged in as root (the superuser) and can repair your system using command line tools. 
-  
-  (Src: [https://wiki.ubuntu.com/RecoveryMode](https://wiki.ubuntu.com/RecoveryMode))
+  > If your system fails to boot for whatever reason, it may be useful to boot it into recovery mode. This mode just loads some basic services and drops you into command line mode. You are then logged in as root (the superuser) and can repair your system using command line tools. 
+  > (Src: [https://wiki.ubuntu.com/RecoveryMode](https://wiki.ubuntu.com/RecoveryMode))
 
 ## 5.	Modify option vm.dirty_ratio:
   * a.	using sysctl utility
   * b.	using sysctl configuration file
 
-  **vm.dirty_ratio** is the absolute maximum amount of system memory that can be filled with *dirty pages* (memory pages that still need to be written to disk) before everything must get committed to disk. When the system gets to this point all new I/O blocks until dirty pages have been written to disk. This is often the source of long I/O pauses, but is a safeguard against too much data being cached unsafely in memory.
-  
-  (Src. [https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/](https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/))
+  > **vm.dirty_ratio** is the absolute maximum amount of system memory that can be filled with *dirty pages* (memory pages that still need to be written to disk) before everything must get committed to disk. When the system gets to this point all new I/O blocks until dirty pages have been written to disk. This is often the source of long I/O pauses, but is a safeguard against too much data being cached unsafely in memory. 
+  > (Src. [https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/](https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/))
   
   Check the current value of vm.dirty_ratio:
   
@@ -247,7 +245,7 @@
 ***
 
 # iptables:
-## With enabled firewalld:
+
 ## 1.	Add rule using firewall-cmd that will allow SSH access to your server *only* from network 192.168.56.0/24 and interface enp0s8.
   
   Interface **enp0s8** belongs to *public* zone:
