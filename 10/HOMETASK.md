@@ -4,7 +4,7 @@
 
 ## 1. Find a utility to inspect *initrd* file contents. Find all files that are related to XFS filesystem and give a short description for every file.
   
-  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and maybe some other drivers that can be needed for correct system start, but can't be embedded to kernel (because of free space issue or other reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for special system feateres. 
+  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and maybe some other drivers that can be needed for correct/customized system start, but can't be embedded to kernel (due to some reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for specific system features. 
   
   **initramfs** is located in **/boot** directory:
   
@@ -60,19 +60,125 @@
 
 ## 2. Explain the difference between ordinary and rescue initrd images.
   
+  When some kernel modules or initramfs files are corrupted or missing, the system can't boot correctly.
   
+  For that case there is a **rescue initrd** image that containt all the drivers and kernel modules (usually for the previous stable kernel version) so the system can be
+  booted using this image and admin can check what happened to the needed initial ram disk.
+  
+  So the rescue version of initramfs(initrd) is usually much bigger and generared automatically each time kernel is updated.
+  
+  ![](/10/screenshots/task1_5.png)
+  
+  Grub2 menu to choose OS kernel to boot:
+  
+  ![](/10/screenshots/task1_6.png)
   
 ## 3. Study dracut utility that is used for rebuilding initrd image. Give an example for adding driver/kernel module for your initrd and recreating it.
   
   
+  Some modules can be added to initrd image by:
+  
+   * adding them to dracut configuration files */etc/dracut.conf.d/*.conf*
+   * using -a or --add parameters with *dracut* command utility
+
+  For axample, to list available modules use command:
+  
+  ```
+  # dracut --list-modules
+  ```
+  
+  ![](/10/screenshots/task1_13.png)
+  
+  There is no module **crypt** in **initramfs-3.10.0-1160.15.2.el7.x86_64.img** so let's try to add it by using dracut:
+  
+  ```
+  # 
+  ```
+  
+  ![Результат](/10/screenshots/task1_14.png)
+  
+  ![](/10/screenshots/task1_15.png)
+    
 
 ## 4.	Enable recovery options for grub, update main configuration file and find new item in GRUB2 config in /boot.
   
+  Open grub settings file and set GRUB_DISABLE_RECOVERY to 'false':
+  ```
+  # vim /etc/default/grub
+  ```
   
+  ```
+  GRUB_DISABLE_RECOVERY="false"
+  ```
+  
+  ![](/10/screenshots/task1_7.png)
+  
+  Then update grun configuration:
+  ```
+  # grub2-mkconfig -o /boot/grub2/grub.cfg
+  ```
+  
+  ![](/10/screenshots/task1_9.png)
+  
+  In **/boot/grub2/grub.cfg** file new *menuentry* options were found:
+  
+  ![](/10/screenshots/task1_12.png)
+  
+  When booting the system now grub2 menu looks like this:
+  
+  ![](/10/screenshots/task1_11.png)
+  
+  If your system fails to boot for whatever reason, it may be useful to boot it into recovery mode. This mode just loads some basic services and drops you into command line mode. You are then logged in as root (the superuser) and can repair your system using command line tools. 
+  
+  (Src: [https://wiki.ubuntu.com/RecoveryMode](https://wiki.ubuntu.com/RecoveryMode))
 
 ## 5.	Modify option vm.dirty_ratio:
   * a.	using sysctl utility
   * b.	using sysctl configuration file
+
+  **vm.dirty_ratio** is the absolute maximum amount of system memory that can be filled with *dirty pages* (memory pages that still need to be written to disk) before everything must get committed to disk. When the system gets to this point all new I/O blocks until dirty pages have been written to disk. This is often the source of long I/O pauses, but is a safeguard against too much data being cached unsafely in memory.
+  
+  (Src. [https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/](https://lonesysadmin.net/2013/12/22/better-linux-disk-caching-performance-vm-dirty_ratio/))
+  
+  Check the current value of vm.dirty_ratio:
+  
+  ```
+  # sysctl -a | grep vm.dirty_ratio
+  ```
+  
+  ![](/10/screenshots/task1_16.png)
+  
+  **Set vm.dirty_ratio using *systcl utility*** to *40*:
+  
+  ```
+  # sysctl -w vm.dirty_ratio="40"
+  ```
+  
+  The result:
+  
+  ![](/10/screenshots/task1_17.png)
+  
+  **Set vm.dirty_ratio using *systcl configuration file*** back to *30*:
+  
+  ```
+  # vi /etc/sysctl.conf
+  ```
+  
+  Add following line:
+  
+  ```
+  vm.dirty_ratio=30
+  ```
+  
+  Then reload settings (from /etc/sysctl.conf by default):
+  
+  ```
+  # sysctl --load
+  ```
+  
+  The result:
+  
+  ![](/10/screenshots/task1_18.png)  
 
 ## 6.	Disable selinux using kernel cmdline
   
