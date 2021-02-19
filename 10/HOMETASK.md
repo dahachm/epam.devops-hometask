@@ -80,7 +80,7 @@
    * adding them to dracut configuration files */etc/dracut.conf.d/*.conf*
    * using -a or --add parameters with *dracut* command utility
 
-  For axample, to list available modules use command:
+  To list *available dracut modules* use command:
   
   ```
   # dracut --list-modules
@@ -88,16 +88,31 @@
   
   ![13](/10/screenshots/task1_13.png)
   
-  There is no module **crypt** in **initramfs-3.10.0-1160.15.2.el7.x86_64.img** so let's try to add it by using dracut:
+  To list *loaded kernel modules* use command:
   
   ```
-  # 
+  # lsmod
   ```
   
-  ![14 Результат](/10/screenshots/task1_14.png)
+  ![14](/10/screenshots/task1_14.png)
   
-  ![15](/10/screenshots/task1_15.png)
-    
+  Let's add **ip_set** module to *initramfs-3.10.0-1160.15.2.el7.x86_64.img*.
+  
+  Check if there is no such module in it already:
+  
+  ```
+  # lsinitrd /boot/initramfs-3.10.0-1160.15.2.el7.x86_64.img | grep ip_set
+  ```
+  
+  ![no ip set](/10/screenshots/task1_dracut_no_ipset.png)
+  
+  ```
+  # dracut --add-drivers ip_set /boot/initramfs-3.10.0-1160.15.2.el7.x86_64.img --force
+  ```
+  
+  ![Результат](/10/screenshots/task1_dracut.png)
+  
+  Used *--add-drivers*parameter because *ip_set* is one of kernel modules, not dracut modules.
 
 ## 4.	Enable recovery options for grub, update main configuration file and find new item in GRUB2 config in /boot.
   
