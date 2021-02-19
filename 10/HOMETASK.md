@@ -113,7 +113,7 @@
   
   ![](/10/screenshots/task1_7.png)
   
-  Then update grun configuration:
+  Then update grub configuration:
   ```
   # grub2-mkconfig -o /boot/grub2/grub.cfg
   ```
@@ -148,7 +148,7 @@
   
   ![](/10/screenshots/task1_16.png)
   
-  **Set vm.dirty_ratio using *systcl utility*** to *40*:
+  **a. Set vm.dirty_ratio using *systcl utility*** to *40*:
   
   ```
   # sysctl -w vm.dirty_ratio="40"
@@ -158,7 +158,7 @@
   
   ![](/10/screenshots/task1_17.png)
   
-  **Set vm.dirty_ratio using *systcl configuration file*** back to *30*:
+  **b. Set vm.dirty_ratio using *systcl configuration file*** back to *30*:
   
   ```
   # vi /etc/sysctl.conf
@@ -182,7 +182,53 @@
 
 ## 6.	Disable selinux using kernel cmdline
   
+  There are at least 2 options to do this:
   
+  1) While starting the system in grub2 menu choose needed kernel and press **-e** to *edit*:
+    
+     ![](/10/screenshots/task1_19.png)
+     
+     Add *selinux=0* to the end of kernel command line just like on the screen below:
+     
+     ![](/10/screenshots/task1_20.png)
+     
+     And then precc *Ctrl+x* to start system booting.
+     
+     The result:
+     
+     ```
+     # sestatus
+     ```
+     
+     ![](/10/screenshots/task1_21.png) 
+  
+  2) This option is useful if to disable SElinux permanently is needed. 
+     
+     We can edit kernel comman line in grub configuration file:
+     
+     ```
+     # vi /etc/default/grub
+     ```
+     
+     Find and edit value of GRUB_CMDLINE_LINUX:
+     
+     ![](/10/screenshots/task1_22.png)
+     
+     Then update grub configuration:
+     
+     ```
+     # grub2-mkconfig -o /boot/grub2/grub.cfg
+     ```
+     
+     And reboot the system.
+     
+     In grub2 menu can check the state of kernel command line:
+     
+     ![](/10/screenshots/task1_23.png)
+     
+     Start the system and check SElinux status:
+     
+     ![](/10/screenshots/task1_24.png)  
 
 ***
 
