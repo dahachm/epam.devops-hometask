@@ -2,8 +2,60 @@
 
 # Boot process
 
-## 1. Find a utility to inspect initrd file contents. Find all files that are related to XFS filesystem and give a short description for every file.
+## 1. Find a utility to inspect *initrd* file contents. Find all files that are related to XFS filesystem and give a short description for every file.
   
+  **initramfs** (or **initrd** in earlier versions) - initial ramdisk image - is used as the first root filesystem that machine has access to and carries the modules needed for kernel to mount root filesystem and maybe some other drivers that can be needed for correct system start, but can't be embedded to kernel (because of free space issue or other reasons). The best thing about **initramfs** (or **initrd**) is that it can be rearranged by (competent) user for special system feateres. 
+  
+  **initramfs** is located in **/boot** directory:
+  
+  ![](/10/screenshots/task1_1.png)
+  
+  There are few **initramfs** files for different kernel versions, as you can see.
+  
+  For now **3.10.0-1160.15.2.el7.x86_64** version is used:
+  
+  ![](/10/screenshots/task1_2.png)
+  
+  So let's inspect suited **initramfs**.
+  
+  ![](/10/screenshots/task1_3.png)
+  
+  To inspect its content there is **lsinitrd** utility:
+  
+  ```
+  # lsinird /boot/initramfs-3.10.0-1160.15.2.el7.x86_64.img
+  ```
+  
+  ![](/10/screenshots/task1_4.png)
+  
+  All the files related to XFS filesystem can be found with folllowing command:
+  
+  ```
+  # lsinitrd /boot/initramfs-3.10.0-1160.15.2.el7.x86_64.img | grep xfs
+  ```
+  
+  I got following output:
+  
+  ```
+  drwxr-xr-x   2 root     root            0 Feb  7 09:11 usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs
+  -rw-r--r--   1 root     root       335980 Feb  3 10:18 usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs/xfs.ko.xz
+  -rwxr-xr-x   1 root     root          433 Sep 30 13:51 usr/sbin/fsck.xfs
+  -rwxr-xr-x   1 root     root       590208 Feb  7 09:11 usr/sbin/xfs_db
+  -rwxr-xr-x   1 root     root          747 Sep 30 13:51 usr/sbin/xfs_metadump
+  -rwxr-xr-x   1 root     root       576720 Feb  7 09:11 usr/sbin/xfs_repair
+  ```
+  
+  **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs** - XFS kernel module
+  
+  **usr/lib/modules/3.10.0-1160.15.2.el7.x86_64/kernel/fs/xfs/xfs.ko.xz** - compressed XFS kernel module
+  
+  **usr/sbin/fsck.xfs** - is used to check and optionally repair XFS filesystem
+  
+  **usr/sbin/xfs_db** - is used to examine an XFS filesystem
+  
+  **usr/sbin/xfs_metadump** - is a debugging tool that copies the metadata from an XFS filesystem to a file.
+  
+  **usr/sbin/xfs_repair** - repairs corrupt or damaged XFS filesystems
   
 
 ## 2. Explain the difference between ordinary and rescue initrd images.
