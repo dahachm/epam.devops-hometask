@@ -9,11 +9,11 @@
 
 * **VM1**: 2CPU, 2-4G памяти, системный диск на 15-20G и дополнительные 2 диска по 5G
     
-    ![](C:\epam\Images\screenshot_0.png)
+    ![0](/Linux%20Exam/Images/Screenshot_0.png)
 
 * **VM2**: 2CPU, 2-4G памяти, системный диск на 15-20G и дополнительные 2 диска по 5G
     
-    ![](C:\epam\Images\screenshot_00.png)
+    ![00](/Linux%20Exam/Images/Screenshot_00.png)
 
 ## Шаг 2
 > При установке CentOS создать дополнительного пользователя **exam** и настроить для него использование sudo без пароля. Все последующие действия необходимо выполнять от этого пользователя, если не указано иное.
@@ -41,7 +41,7 @@ $ java -version
 ```
 Версия JDK: 
 
-![](C:\epam\Images\screenshot_2.png)
+![2](/Linux%20Exam/Images/Screenshot_2.png)
 
 ## Шаг 4
 > Скачать архив с Hadoop версии 3.1.2 (https://hadoop.apache.org/release/3.1.2.html).
@@ -56,7 +56,7 @@ $ wget https://archive.apache.org/dist/hadoop/common/hadoop-3.1.2/hadoop-3.1.2.t
 ```
 Процесс загрузки: 
 
-![](C:\epam\Images\screenshot_3.png)
+![3](/Linux%20Exam/Images/Screenshot_3.png)
 
 ## Шаг 5
 > Распаковать содержимое архива в */opt/hadoop-3.1.2/*.
@@ -65,7 +65,7 @@ $ wget https://archive.apache.org/dist/hadoop/common/hadoop-3.1.2/hadoop-3.1.2.t
 $ sudo tar -xf hadoop-3.1.2.tar.gz -C /opt/
 ```
 
-![](C:\epam\Images\screenshot_4.png)
+![4](/Linux%20Exam/Images/Screenshot_4.png)
 
 ## Шаг 6
 > Сделать симлинк /usr/local/hadoop/current/ на директорию */opt/hadoop-3.1.2/*.
@@ -80,7 +80,7 @@ $ sudo ln -s /opt/hadoop-3.1.2 /usr/local/hadoop
 $ sudo mv /usr/local/hadoop/hadoop-3.1.2 /usr/local/hadoop/current
 ```
 
-![](C:\epam\Images\screenshot_5.png)
+![5](/Linux%20Exam/Images/Screenshot_5.png)
 
 ## Шаг 7
 > Создать пользователей **hadoop**, **yarn** и **hdfs**, а также группу **hadoop**, в которую необходимо добавить всех этих пользователей.
@@ -96,7 +96,7 @@ $ sudo useradd yarn -g hadoop
 $ sudo useradd hdfs -g hadoop
 ```
 
-![](C:\epam\Images\screenshot_6.png)
+![6](/Linux%20Exam/Images/Screenshot_6.png)
 
 ## Шаг 8
 > Создать для обоих дополнительных дисков разделы размером в 100% диска.
@@ -112,9 +112,9 @@ $ sudo parted /dev/sdb
 > End? 100%
 ```
 
-![](C:\epam\Images\screenshot_8.png)
+![8](/Linux%20Exam/Images/Screenshot_8.png)
 
-![](C:\epam\Images\screenshot_9.png)
+![9](/Linux%20Exam/Images/Screenshot_9.png)
 
 ## Шаг 9
 > Инициализировать разделы из п.8 в качестве физических томов для LVM.
@@ -125,14 +125,14 @@ $ sudo parted /dev/sdb
 > set 1 lvm on
 ```
 
-![](C:\epam\Images\screenshot_10.png)
+![10](/Linux%20Exam/Images/Screenshot_10.png)
 
 ```
 $ sudo pvcreate /dev/sdb1
 $ sudo pvcreate /dev/sdc1
 ```
 
-![](C:\epam\Images\screenshot_11.png)
+![11](/Linux%20Exam/Images/Screenshot_11.png)
 
 ## Шаг 10 
 > Создать две группы LVM и добавить в каждую из них по одному физическому тому из п.9.
@@ -142,9 +142,9 @@ $ sudo vgcreate vg1 /dev/sdb1
 $ sudo vgcreate vg2 /deb/sdc1
 ```
 
-![](C:\epam\Images\screenshot_12.png)
+![12](/Linux%20Exam/Images/Screenshot_12.png)
 
-![](C:\epam\Images\screenshot_13.png)
+![13](/Linux%20Exam/Images/Screenshot_13.png)
 
 ## Шаг 11
 > В каждой из групп из п.10 создать логический том LVM размером 100% группы.
@@ -154,9 +154,9 @@ $ sudo lvcreate -n /dev/vg1/LV1 -l 100%VG vg1
 $ sudo lvcreate -n /dev/vg2/LV2 -l 100%VG vg2
 ```
 
-![](C:\epam\Images\screenshot_14.png)
+![14](/Linux%20Exam/Images/Screenshot_14.png)
 
-![](C:\epam\Images\screenshot_15.png)
+![15](/Linux%20Exam/Images/Screenshot_15.png)
 
 ## Шаг 12
 > На каждом логическом томе LVM создать файловую систему ext4.
@@ -166,11 +166,11 @@ $ sudo mkfs -t ext4 /dev/vg1/LV1
 $ sudo mkfs -t ext4 /dev/vg2/LV2
 ```
 
-![](C:\epam\Images\screenshot_16.png)
+![16](/Linux%20Exam/Images/Screenshot_16.png)
 
-![](C:\epam\Images\screenshot_17.png)
+![17](/Linux%20Exam/Images/Screenshot_17.png)
 
-![](C:\epam\Images\screenshot_18.png)
+![18](/Linux%20Exam/Images/Screenshot_18.png)
 
 ## Шаг 13
 > Создать директории и использовать их в качестве точек монтирования файловых систем из п.12 (/opt/mount1 и /opt/mount2 соответсвенно).
@@ -183,7 +183,7 @@ $ sudo mount /dev/mapper/vg1-LV1 /opt/mount1
 $ sudo mount /dev/mapper/vg2-LV2 /opt/mount2
 ```
 
-![](C:\epam\Images\screenshot_19.png)
+![19](/Linux%20Exam/Images/Screenshot_19.png)
 
 ## Шаг 14 
 > Настроить систему так, чтобы монтирование происходило автоматически при запуске системы. Произвести монтирование новых файловых систем.
@@ -193,7 +193,7 @@ $ sudo mount /dev/mapper/vg2-LV2 /opt/mount2
 $ sudo blkid /dev/mapper/vg*
 ```
 
-![](C:\epam\Images\screenshot_20.png)
+![20](/Linux%20Exam/Images/Screenshot_20.png)
 
 Добавим изменения в */etc/fstab*:
 ```
@@ -205,7 +205,7 @@ $ sudo mount -a
 ```
 Теперь после перезагрузки, указанные разделы монтируются автоматически.
 
-![](C:\epam\Images\screenshot_21.png)
+![21](/Linux%20Exam/Images/Screenshot_21.png)
 
 ## Для VM1 (шаги 15-16):
 ## Шаг 15
@@ -217,7 +217,7 @@ $ sudo mount -a
 $ sudo mkdir /opt/mount{1,2}/namenode-dir
 ```
 
-![](C:\epam\Images\screenshot_22.png)
+![22](/Linux%20Exam/Images/Screenshot_22.png)
 
 ## Шаг 16
 > Сделать пользователя hdfs и группу hadoop владельцами этих директорий.
@@ -227,7 +227,7 @@ $ sudo chown hdfs:hadoop /opt/mount{1,2}/namenode-dir
 ```
 После: 
 
-![](C:\epam\Images\screenshot_23.png)
+![23](/Linux%20Exam/Images/Screenshot_23.png)
 
 ## Для VM2 (шаги 17-20):
 ## Шаг 17
@@ -239,7 +239,7 @@ $ sudo chown hdfs:hadoop /opt/mount{1,2}/namenode-dir
 $ sudo mkdir /opt/mount{1,2}/datanode-dir
 ```
 
-![](C:\epam\Images\screenshot_24.png)
+![24](/Linux%20Exam/Images/Screenshot_24.png)
 
 ## Шаг 18
 > Сделать пользователя **hdfs** и группу **hadoop** владельцами директорий из п.17.
@@ -248,7 +248,7 @@ $ sudo mkdir /opt/mount{1,2}/datanode-dir
 $ sudo chown hdfs:hadoop /opt/mount{1,2}/datanode-dir
 ```
 
-![](C:\epam\Images\screenshot_25.png)
+![25](/Linux%20Exam/Images/Screenshot_25.png)
 
 ## Шаг 19
 > Создать дополнительные 4 директории для Nodemanager сервиса YARN:
@@ -261,7 +261,7 @@ $ sudo chown hdfs:hadoop /opt/mount{1,2}/datanode-dir
 $ sudo mkdir /opt/mount{1,2}/nodemanager-{local,log}-dir
 ```
 
-![](C:\epam\Images\screenshot_26.png)
+![26](/Linux%20Exam/Images/Screenshot_26.png)
 
 ## Шаг 20
 > Сделать пользователя **yarn** и группу **hadoop** владельцами директорий из п.19.
@@ -270,7 +270,7 @@ $ sudo mkdir /opt/mount{1,2}/nodemanager-{local,log}-dir
 $ sudo chown yarn:hadoop /opt/mount{1,2}/nodemanager-{local,log}-dir
 ```
 
-![](C:\epam\Images\screenshot_27.png)
+![27](/Linux%20Exam/Images/Screenshot_27.png)
 
 ***
 ## Личная заметка
@@ -280,7 +280,7 @@ $ sudo hostnamectl set-hostname headnode
 # sudo reboot
 ```
 
-![](C:\epam\Images\screenshot_28.png)
+![28](/Linux%20Exam/Images/Screenshot_28.png)
 
 ***Отсюда и далее хост-имена VM1 - *headnode*, VM2 - *worker*.***
 ***
@@ -290,7 +290,7 @@ $ sudo hostnamectl set-hostname headnode
 
 Конфигурация сетевого интерфейса внутренней сети (для связи 2-х ВМ между собой):
 
-![](C:\epam\Images\screenshot_29.png)
+![29](/Linux%20Exam/Images/Screenshot_29.png)
 
 Генерация ключей:
 ```
@@ -307,7 +307,7 @@ $ sudo chown hadoop:hadoop /home/hadoop/.ssh
 $ sudo chown hadoop:hadoop /home/hadoop/.ssh/hadoop{,.pub}
 ```
 
-![](C:\epam\Images\screenshot_30.png)
+![30](/Linux%20Exam/Images/Screenshot_30.png)
 
 Переместим публичные ключи (hadoop.pub) с одного хоста на другой.
 
@@ -343,11 +343,11 @@ Host headnode
 
 Попытка соединения к **VM1 (headnode, 10.0.3.1) с **VM2** (worker, 10.0.3.2):
 
-![](C:\epam\Images\screenshot_31.png)
+![31](/Linux%20Exam/Images/Screenshot_31.png)
 
 Попытка соединения к **VM2** (worker, 10.0.3.2) с **VM1** (headnode, 10.0.3.1):
 
-![](C:\epam\Images\screenshot_32.png)
+![32](/Linux%20Exam/Images/Screenshot_32.png)
 
 ## Шаг 22
 > Добавить VM1 и VM2 в /etc/hosts.
@@ -384,21 +384,21 @@ $ sudo wget -O /usr/local/hadoop/current/etc/hadoop/yarn-site.xml  https://gist.
     $ sudo sed -i -r 's:(export JAVA_HOME=)(.*):\1/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.el7_9.x86_64/jre:' /usr/local/hadoop/current/etc/hadoop/hadoop-env.sh
     ```
     
-    ![](C:\epam\Images\screenshot_34.png)
+    ![34](/Linux%20Exam/Images/Screenshot_34.png)
     
     HADOOP_HOME:
     ```
     $ sudo sed -i -r 's:(export HADOOP_HOME=)(.*):\1/usr/local/hadoop/current:' /usr/local/hadoop/current/etc/hadoop/hadoop-env.sh 
     ```
     
-    ![](C:\epam\Images\screenshot_35.png)
+    ![35](/Linux%20Exam/Images/Screenshot_35.png)
     
     HADOOP_HEAPSIZE_MAX:
     ```
     $ sudo sed -i -r 's:(export HADOOP_HEAPSIZE_MAX=)(.*):\1512:' /usr/local/hadoop/current/etc/hadoop/hadoop-env.sh
     ```
     
-    ![](C:\epam\Images\screenshot_36.png)
+    ![36](/Linux%20Exam/Images/Screenshot_36.png)
 
 *  **core-site.xml**
     
@@ -408,7 +408,7 @@ $ sudo wget -O /usr/local/hadoop/current/etc/hadoop/yarn-site.xml  https://gist.
     $ sudo sed -i 's/%HDFS_NAMENODE_HOSTNAME%/headnode/' /usr/local/hadoop/current/etc/hadoop/core-site.xml
     ```
     
-    ![](C:\epam\Images\screenshot_37.png)
+    ![37](/Linux%20Exam/Images/Screenshot_37.png)
 
 *  **hdfs-site.xml**
     > Необходимо указать директории namenode-dir, а также datanode-dir, каждый раз через запятую (например, /opt/mount1/namenode-dir,/opt/mount2/namenode-dir)
@@ -418,7 +418,7 @@ $ sudo wget -O /usr/local/hadoop/current/etc/hadoop/yarn-site.xml  https://gist.
     $ sudo sed -i 's|%DATANODE_DIRS%|/opt/mount1/datanode-dir,/opt/mount2/datanode-dir|' /usr/local/hadoop/current/etc/hadoop/hdfs-site.xml
     ```
     
-    ![](C:\epam\Images\screenshot_38.png)
+    ![38](/Linux%20Exam/Images/Screenshot_38.png)
 
 *  **yarn-site.xml**
     
@@ -430,7 +430,7 @@ $ sudo wget -O /usr/local/hadoop/current/etc/hadoop/yarn-site.xml  https://gist.
     $ sudo sed -i 's|%NODE_MANAGER_LOG_DIR%|/opt/mount1/nodemanager-log-dir,/opt/mount2/nodemanager-log-dir|' /usr/local/hadoop/current/etc/hadoop/yarn-site.xml
     ```
     
-    ![](C:\epam\Images\screenshot_39.png)
+    ![39](/Linux%20Exam/Images/Screenshot_39.png)
 
     
 ## Шаг 24
@@ -445,7 +445,7 @@ HADOOP_HOME=/usr/local/hadoop/current
 $ source /etc/profile
 ```
 
-![](C:\epam\Images\screenshot_40.png)
+![40](/Linux%20Exam/Images/Screenshot_40.png)
 
 ## Для VM1 (шаги 25-26):
 ## Шаг 25
@@ -456,13 +456,13 @@ $ source /etc/profile
    $ sudo su -l hdfs -c "$HADOOP_HOME/bin/hdfs namenode -format cluster1"
    ```
    
-   ![](C:\epam\Images\screenshot_43_failure.png)
+   ![43](/Linux%20Exam/Images/Screenshot_43_failure.png)
    
    Для решения проблемы попробуем предпринять следующие шаги.
    
    Проверим права доступа к проблемной директории *$HADOOP_HOME/logs*:
    
-   ![](C:\epam\Images\screenshot_44.png)
+   ![44](/Linux%20Exam/Images/Screenshot_44.png)
    
    Как мы видим, у пользователей группы *hadoop* (к ней как раз относится пользователь *hdfs*) нет прав на запись в директорию. 
    Исправим это:
@@ -470,11 +470,11 @@ $ source /etc/profile
    $ sudo chmod 775 /usr/local/hadoop/current/logs
    ```
    
-   ![](C:\epam\Images\screenshot_45.png)
+   ![45](/Linux%20Exam/Images/Screenshot_45.png)
    
    Успешно форматируем HDFS:
    
-   ![](C:\epam\Images\screenshot_46.png)
+   ![46](/Linux%20Exam/Images/Screenshot_46.png)
    
 ## Шаг 26
 > Запустить демоны сервисов Hadoop
@@ -485,7 +485,7 @@ $ source /etc/profile
     ```
     Демон запущен:
     
-    ![](C:\epam\Images\screenshot_47.png)
+    ![47](/Linux%20Exam/Images/Screenshot_47.png)
     
 * Запуск **ResourceManager** (от имени пользователя yarn):
     ```
@@ -493,7 +493,7 @@ $ source /etc/profile
     ```
     Демон запущен:
     
-    ![](C:\epam\Images\screenshot_48.png)
+    ![48](/Linux%20Exam/Images/Screenshot_48.png)
 
 ## Для VM2 (шаг 27):
 ## Шаг 27
@@ -507,7 +507,7 @@ $ source /etc/profile
     $ sudo chmod 775 /usr/local/hadoop/current/logs
     ```
     
-    ![](C:\epam\Images\screenshot_49.png)
+    ![49](/Linux%20Exam/Images/Screenshot_49.png)
     
     ```
     $ sudo su -l hdfs -c "$HADOOP_HOME/bin/hdfs --daemon start datanode"
@@ -520,7 +520,7 @@ $ source /etc/profile
     
 Оба демона успешно запущены: 
 
-![](C:\epam\Images\screenshot_50.png)
+![50](/Linux%20Exam/Images/Screenshot_50.png)
 
 ## Шаг 28
 > Проверить доступность Web-интефейсов HDFS Namenode и YARN Resource Manager по портам 9870 и 8088 соответственно (VM1).
@@ -529,7 +529,7 @@ $ source /etc/profile
 $ sudo lsof -Pn -i TCP -s TCP:LISTEN
 ```
 
-![](C:\epam\Images\screenshot_51.png)
+![51](/Linux%20Exam/Images/Screenshot_51.png)
 
 Перебросим трафик с портов 8088 и 9870 на порты 65000 и 65070 соответсвенно на хостовой машине:
 ```
@@ -539,11 +539,11 @@ $ ssh -L 65070:headnode:9870 exam@192.168.56.114
 
 Веб-интерфейс кластера (порт 8088 на headnode): 
 
-![](C:\epam\Images\screenshot_52.png)
+![52](/Linux%20Exam/Images/Screenshot_52.png)
 
 Веб-интерйес NameNode (мастер-нода в кластере, порт 9870 на headnode): 
 
-![](C:\epam\Images\screenshot_53.png)
+![53](/Linux%20Exam/Images/Screenshot_53.png)
 
 ## Шаг 29
 > Настроить управление запуском каждого компонента Hadoop при помощи systemd (используя юниты-сервисы).
@@ -587,11 +587,11 @@ $ ssh -L 65070:headnode:9870 exam@192.168.56.114
     $ sudo systemctl start resourcemanager
     ```
     
-    ![](C:\epam\Images\screenshot_54.png)
+    ![54](/Linux%20Exam/Images/Screenshot_54.png)
     
-    ![](C:\epam\Images\screenshot_55.png)
+    ![55](/Linux%20Exam/Images/Screenshot_55.png)
     
-    ![](C:\epam\Images\screenshot_56.png)
+    ![56](/Linux%20Exam/Images/Screenshot_56.png)
     
 * **VM2** (worker):
     
@@ -632,22 +632,6 @@ $ ssh -L 65070:headnode:9870 exam@192.168.56.114
     $ sudo systemctl start nodemanager
     ```
     
-    ![](C:\epam\Images\screenshot_57.png)
+    ![57](/Linux%20Exam/Images/Screenshot_57.png)
     
-    ![](C:\epam\Images\screenshot_58.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ![58](/Linux%20Exam/Images/Screenshot_58.png)
