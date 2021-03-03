@@ -519,7 +519,7 @@ $ source /etc/profile
     $ sudo su -l yarn -c "$HADOOP_HOME/bin/yarn --daemon start nodemanager"
     ```
     
-Оба демона успешно запущены: 
+Оба демона запущены: 
 
 ![50](/Linux%20Exam/Images/Screenshot_50.png)
 
