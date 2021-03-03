@@ -197,7 +197,8 @@ $ sudo blkid /dev/mapper/vg*
 
 Добавим изменения в */etc/fstab*:
 ```
-UUID=db87737a-cf67-453a-bdbd-3c297b6d4399 /opt/mount1             ext4    defaults        0 0  UUID=6b58b7d2-03da-4ebf-8ea9-894fca933aac /opt/mount2             ext4    defaults        0 0
+UUID=db87737a-cf67-453a-bdbd-3c297b6d4399 /opt/mount1             ext4    defaults        0 0  
+UUID=6b58b7d2-03da-4ebf-8ea9-894fca933aac /opt/mount2             ext4    defaults        0 0
 ```
 Смонтируем все диски из */etc/fstab*:
 ```
